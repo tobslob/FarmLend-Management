@@ -1,2 +1,1 @@
-export * from "./jsonwebtoken";
-export * from "./log";
+export * from './jsonwebtoken'

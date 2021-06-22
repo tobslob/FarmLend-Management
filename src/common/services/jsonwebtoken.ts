@@ -1,16 +1,17 @@
 import * as jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-import { getUser } from "@app/services/user";
+import { config } from "dotenv";
+import { Users } from "@app/services/user";
 import { NotFoundError, handleError } from "@app/data/util";
 import { UNAUTHORIZED } from "http-status-codes";
+import { Auth, User } from "@app/data/user";
 
-dotenv.config();
+config();
 
 /**
  * Generate token based on payload.
  */
-export function seal(data: any, secret: string, ttl: number | string): Promise<string> {
+export function seal(data: User, secret: string, ttl: number | string): Promise<string> {
   const expiresIn = typeof ttl === "number" ? `${ttl}s` : ttl;
   return new Promise((resolve, reject) => {
     const claim = data.toJSON ? data.toJSON() : data;
@@ -41,9 +42,9 @@ export async function secure(req: Request, res: Response, next: NextFunction) {
       return null;
     }
 
-    const claim = await unseal(token, process.env.secret_key);
+    const claim = await unseal(token, process.env.SECRET_KEY);
 
-    const user = await getUser(claim["id"]);
+    const user = await Users.getUser(claim["id"]);
 
     if (!user) {
       throw new NotFoundError("User not found");
@@ -58,7 +59,7 @@ export async function secure(req: Request, res: Response, next: NextFunction) {
 declare global {
   namespace Express {
     export interface Request {
-      user: any;
+      user: Auth;
     }
   }
 }

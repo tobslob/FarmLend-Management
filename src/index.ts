@@ -4,7 +4,6 @@ import http from "http";
 import { App } from "./server/app";
 import { Log } from "./common/services/log";
 import dotenv from "dotenv";
-import { rAmqp } from "./common/services/amqp";
 
 dotenv.config();
 
@@ -16,10 +15,6 @@ const start = async () => {
     // connect to MongoDB
     await app.connectDB();
     Log.info("📦  MongoDB Connected!");
-
-    // connect to amqp
-    await rAmqp.init(process.env.amqp_url)
-    Log.info("🐰  Amqp Connected!");
 
     // start server
     const httpServer = http.createServer(appServer);

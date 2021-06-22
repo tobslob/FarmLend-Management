@@ -1,6 +1,6 @@
-import { createRequestSerializer, errSerializer, resSerializer } from "@app/data/util";
 import Logger, { createLogger } from "bunyan";
 import dotenv from "dotenv";
+import { errSerializer, resSerializer, createRequestSerializer } from "@app/data/util";
 
 dotenv.config();
 
