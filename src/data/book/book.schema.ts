@@ -3,9 +3,9 @@ import { trimmedString } from "../util/schema";
 import { SchemaTypes } from "mongoose";
 
 export const BookSchema = SchemaFactory({
-  title: { ...trimmedString, required: true, index: true },
+  title: { ...trimmedString, required: true, index: true, unique: true },
   author: { ...trimmedString, required: true, index: true },
-  year: { type: SchemaTypes.Number, required: true, index: true },
+  year: { ...trimmedString, required: true, index: true },
   total_sold: { type: SchemaTypes.Number, required: true, index: true, default: 0 },
   likes: { type: SchemaTypes.Number, required: true, index: true, default: 0 },
   rating: { type: SchemaTypes.Number, required: true, index: true, default: 0},
@@ -16,6 +16,6 @@ export const BookSchema = SchemaFactory({
   slug: { ...trimmedString, required: true, index: true },
   description: { ...trimmedString, required: true, index: true },
   price: { type: SchemaTypes.Number, required: true, index: true },
-  available_copies: { type: SchemaTypes.Number, required: true, index: true, default: 0 },
-  total_copies: { type: SchemaTypes.Number, required: true, index: true, default: 0 },
+  available_copies: { type: SchemaTypes.Number, index: true, default: 0 },
+  total_copies: { type: SchemaTypes.Number, index: true, default: 0 },
 });

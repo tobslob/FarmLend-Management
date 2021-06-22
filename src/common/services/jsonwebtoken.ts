@@ -2,7 +2,7 @@ import * as jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { config } from "dotenv";
 import { Users } from "@app/services/user";
-import { NotFoundError, handleError } from "@app/data/util";
+import { NotFoundError, handleError, NoAuthenticationError } from "@app/data/util";
 import { UNAUTHORIZED } from "http-status-codes";
 import { Auth, User } from "@app/data/user";
 
@@ -36,6 +36,7 @@ export function unseal(token: string, secret: string): Promise<any> {
 
 export async function secure(req: Request, res: Response, next: NextFunction) {
   try {
+    if(!req.headers.authorization) throw new NoAuthenticationError();
     const token = req.headers.authorization.split(' ')[1];
 
     if (!token) {
@@ -49,7 +50,7 @@ export async function secure(req: Request, res: Response, next: NextFunction) {
     if (!user) {
       throw new NotFoundError("User not found");
     }
-    req.user = claim;
+    req["user"] = claim;
     return next();
   } catch (error) {
     return handleError(req, res, error.message, UNAUTHORIZED);
