@@ -9,7 +9,7 @@ class CartService {
   async addToCart(bookId: string, req: Request) {
     const book = await Books.getBook(bookId);
 
-    if(book.total_copies <= 0) {
+    if(book.available_copies <= 0) {
       throw new Error(`${book.title} is not more available`)
     }
 
@@ -33,7 +33,7 @@ class CartService {
 
     const objCart: Cart = JSON.parse(cart);
 
-    if(objCart.quantity > objCart.total_copies) {
+    if(objCart.quantity > objCart.available_copies) {
       throw new Error(`${bookTitle} is out of stock`);
     }
 

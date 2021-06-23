@@ -17,6 +17,5 @@ export const BookSchema = SchemaFactory({
   description: { ...trimmedString, required: true, index: true },
   price: { type: SchemaTypes.Number, required: true, index: true },
   available_copies: { type: SchemaTypes.Number, index: true, default: 0 },
-  total_copies: { type: SchemaTypes.Number, index: true, default: 0 },
   images: { type: SchemaTypes.Array, index: true, required: true }
 });

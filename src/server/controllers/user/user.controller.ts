@@ -5,16 +5,17 @@ import {
   response,
   requestBody,
 } from 'inversify-express-utils'
-import { BaseController } from '@app/data/util'
+import { BaseController, validate } from '@app/data/util'
 import { User, UserDTO, LoginDTO } from '@app/data/user'
 import { Users } from '@app/services/user'
 import { Request, Response } from 'express'
+import { isUser, isLogin } from './user.validator'
 
 type controllerResponse = User | User[] | string;
 
 @controller('/users')
 export class UserController extends BaseController<controllerResponse> {
-  @httpPost('/')
+  @httpPost('/', validate(isUser))
   async createUser(
     @request() req: Request,
     @response() res: Response,
@@ -28,7 +29,7 @@ export class UserController extends BaseController<controllerResponse> {
     }
   }
 
-  @httpPost('/login')
+  @httpPost('/login', validate(isLogin))
   async login(
     @request() req: Request,
     @response() res: Response,

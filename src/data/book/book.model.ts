@@ -15,7 +15,6 @@ export interface Book extends Model {
   description: string;
   price: number;
   available_copies: number;
-  total_copies: number;
   images: string[];
 }
 
@@ -34,17 +33,16 @@ export interface BookDTO {
   description: string;
   price: number;
   available_copies: number;
-  total_copies: number;
 }
 
 export interface BookQuery {
-  title: string;
-  author: string;
-  year: string;
-  genre: string;
-  tags: string[];
-  publisher: string;
-  slug: string;
-  limit: number;
-  offset: number;
+  title?: string;
+  author?: string;
+  year?: string;
+  genre?: string;
+  tags?: string[];
+  publisher?: string;
+  slug?: string;
+  limit?: number;
+  offset?: number;
 }

@@ -10,16 +10,17 @@ import {
 } from "inversify-express-utils";
 import { Request, Response } from "express";
 import { Book, BookDTO, BookQuery } from "@app/data/book";
-import { BaseController } from "@app/data/util";
+import { BaseController, validate } from "@app/data/util";
 import { secure } from "@app/common/services/jsonwebtoken"
 import { Books } from "@app/services/book";
 import { isUpload } from "./book.middleware";
+import { isBook } from "./book.validator";
 
 type ControllerResponse = Book | Book[];
 
 @controller("/books")
 export class UserBookController extends BaseController<ControllerResponse> {
-  @httpPost("/", secure, isUpload)
+  @httpPost("/", secure, isUpload, validate(isBook))
   async addBook(
     @request() req: Request,
     @response() res: Response,
@@ -61,13 +62,13 @@ export class UserBookController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpGet("/", secure)
+  @httpGet("/feature", secure)
   async getFeatureBooks(
     @request() req: Request,
-    @response() res: Response,
-    @queryParam() query: BookQuery
+    @response() res: Response
   ) {
     try {
+      const query = { limit: 20 }
       const book = await Books.getBooks(query);
       this.handleSuccess(req, res, book);
     }catch(error) {
