@@ -1,0 +1,1511 @@
+{
+	"info": {
+		"_postman_id": "542866e7-e495-4a2c-a38c-71c3d012e93d",
+		"name": "Quidax",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Kazeem\",\n  \"last_name\": \"Odutola\",\n  \"email_address\": \"odutola_k@yahoo.ca\",\n  \"location\": \"6, Williams Ayameh Street, Oworonshoki, Lagos.\",\n  \"password\": \"Kazeem27\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Kazeem\",\n  \"last_name\": \"Odutola\",\n  \"email_address\": \"odutola_k@yahoo.ca\",\n  \"location\": \"6, Williams Ayameh Street, Oworonshoki, Lagos.\",\n  \"password\": \"Kazeem27\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "294"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"126-cyLLq6JlAoO3d+jThrtFrwYBZZU\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "94.165ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 13:42:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"first_name\": \"Kazeem\",\n        \"last_name\": \"Odutola\",\n        \"email_address\": \"odutola_k@yahoo.ca\",\n        \"location\": \"6, Williams Ayameh Street, Oworonshoki, Lagos.\",\n        \"created_at\": \"2021-06-22T13:42:38.635Z\",\n        \"updated_at\": \"2021-06-22T13:42:38.635Z\",\n        \"id\": \"0b206b02-8974-4271-98d7-1b7d9f2ce101\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email_address\": \"odutola_k@yahoo.ca\",\n    \"password\": \"Kazeem27\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email_address\": \"odutola_k@yahoo.ca\",\n    \"password\": \"Kazeem27\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "525"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"20d-wl2fdvwpYDgsCeucthRD8lH0GJ8\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "95.092ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 18:02:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDM4NDk2MCwiZXhwIjoxNjI0MzkyMTYwfQ.DtMo4iHlzTT4Jph9yRZmCdu5Em1yIrGTyAlu9fCTTtQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/tobslob/Desktop/1619206365678.jpeg"
+						},
+						{
+							"key": "title",
+							"value": "Effective Pytho",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Elizabeth Gilbeth",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "2016",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "Motivational",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "better live",
+							"type": "text"
+						},
+						{
+							"key": "released_date",
+							"value": "12-01-2016",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "hello book slug",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Books validation failed: genre: Path `genre` is required., title: Path `title` is required., author: Path `author` is required., year: Path `year` is required., publisher: Path `publisher` is required., released_date: Path `released_date` is required., slug: Path `slug` is required., description: Path `description` is required., price: Path `price` is required.",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "39.9",
+							"type": "text"
+						},
+						{
+							"key": "available_copies",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "total_copies",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "images",
+							"type": "file",
+							"src": "/Users/tobslob/Desktop/1.jpeg"
+						},
+						{
+							"key": "genre",
+							"value": "Motivation",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "wisdom",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Books",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Effective Python\",\n  \"author\": \"Elizabeth Gilbeth\",\n  \"year\": \"2016\",\n  \"genre\": \"Motivational\",\n  \"tags\": [\"Creativity\", \"Better Living\"],\n  \"publisher\": \"Savannah Books\",\n  \"released_date\": \"12-01-2016\",\n  \"slug\": \"Creativity Living Beyind Fear\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n  \"price\": 29.99,\n  \"available_copies\": 23,\n  \"total_copies\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2899"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b53-hT+NTF8e55N8MiQnfP+eYhEba4w\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "42.584ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 18:10:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"total_sold\": 0,\n        \"likes\": 0,\n        \"rating\": 0,\n        \"tags\": [\n            \"Creativity\",\n            \"Better Living\"\n        ],\n        \"available_copies\": 23,\n        \"total_copies\": 50,\n        \"title\": \"Effective Python\",\n        \"author\": \"Elizabeth Gilbeth\",\n        \"year\": \"2016\",\n        \"genre\": \"Motivational\",\n        \"publisher\": \"Savannah Books\",\n        \"released_date\": \"2016-11-30T23:00:00.000Z\",\n        \"slug\": \"Creativity Living Beyind Fear\",\n        \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n        \"price\": 29.99,\n        \"created_at\": \"2021-06-22T18:10:26.519Z\",\n        \"updated_at\": \"2021-06-22T18:10:26.519Z\",\n        \"id\": \"c729bf8e-10ab-481f-8818-5bc72414df20\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDM4NDk2MCwiZXhwIjoxNjI0MzkyMTYwfQ.DtMo4iHlzTT4Jph9yRZmCdu5Em1yIrGTyAlu9fCTTtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c729bf8e-10ab-481f-8818-5bc72414df20"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Book",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "c729bf8e-10ab-481f-8818-5bc72414df20"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2899"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b53-hT+NTF8e55N8MiQnfP+eYhEba4w\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "17.533ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 19:20:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"total_sold\": 0,\n        \"likes\": 0,\n        \"rating\": 0,\n        \"tags\": [\n            \"Creativity\",\n            \"Better Living\"\n        ],\n        \"available_copies\": 23,\n        \"total_copies\": 50,\n        \"title\": \"Effective Python\",\n        \"author\": \"Elizabeth Gilbeth\",\n        \"year\": \"2016\",\n        \"genre\": \"Motivational\",\n        \"publisher\": \"Savannah Books\",\n        \"released_date\": \"2016-11-30T23:00:00.000Z\",\n        \"slug\": \"Creativity Living Beyind Fear\",\n        \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n        \"price\": 29.99,\n        \"created_at\": \"2021-06-22T18:10:26.519Z\",\n        \"updated_at\": \"2021-06-22T18:10:26.519Z\",\n        \"id\": \"c729bf8e-10ab-481f-8818-5bc72414df20\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Book Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDM4NDk2MCwiZXhwIjoxNjI0MzkyMTYwfQ.DtMo4iHlzTT4Jph9yRZmCdu5Em1yIrGTyAlu9fCTTtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books?tags=Better",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "magic",
+							"disabled": true
+						},
+						{
+							"key": "publisher",
+							"value": "Books",
+							"disabled": true
+						},
+						{
+							"key": "author",
+							"value": "Gilbeth",
+							"disabled": true
+						},
+						{
+							"key": "year",
+							"value": "2016",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "motivational",
+							"disabled": true
+						},
+						{
+							"key": "tags",
+							"value": "Better"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Book Store",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books?slug=fear",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "magic",
+									"disabled": true
+								},
+								{
+									"key": "publisher",
+									"value": "Books",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Gilbeth",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "2016",
+									"disabled": true
+								},
+								{
+									"key": "genre",
+									"value": "motivational",
+									"disabled": true
+								},
+								{
+									"key": "tags",
+									"value": "Better",
+									"disabled": true
+								},
+								{
+									"key": "slug",
+									"value": "fear"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5766"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1686-AFKz6gDhv6rmwOp0gvys8VhbGck\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "5.511ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 19:51:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"total_sold\": 0,\n            \"likes\": 0,\n            \"rating\": 0,\n            \"tags\": [\n                \"Creativity\",\n                \"Better Living\"\n            ],\n            \"available_copies\": 23,\n            \"total_copies\": 50,\n            \"title\": \"Effective Python\",\n            \"author\": \"Elizabeth Gilbeth\",\n            \"year\": \"2016\",\n            \"genre\": \"Motivational\",\n            \"publisher\": \"Savannah Books\",\n            \"released_date\": \"2016-11-30T23:00:00.000Z\",\n            \"slug\": \"Creativity Living Beyind Fear\",\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n            \"price\": 29.99,\n            \"created_at\": \"2021-06-22T18:10:26.519Z\",\n            \"updated_at\": \"2021-06-22T18:10:26.519Z\",\n            \"id\": \"c729bf8e-10ab-481f-8818-5bc72414df20\"\n        },\n        {\n            \"total_sold\": 0,\n            \"likes\": 0,\n            \"rating\": 0,\n            \"tags\": [\n                \"Creativity\",\n                \"Better Living\"\n            ],\n            \"available_copies\": 23,\n            \"total_copies\": 50,\n            \"title\": \"Big magic\",\n            \"author\": \"Elizabeth Gilbeth\",\n            \"year\": \"2016\",\n            \"genre\": \"Motivational\",\n            \"publisher\": \"Savannah Books\",\n            \"released_date\": \"2016-11-30T23:00:00.000Z\",\n            \"slug\": \"Creativity Living Beyind Fear\",\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n            \"price\": 29.99,\n            \"created_at\": \"2021-06-22T18:02:59.613Z\",\n            \"updated_at\": \"2021-06-22T18:02:59.613Z\",\n            \"id\": \"d448b292-6bef-4237-8583-5f64888926dd\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDM4NDk2MCwiZXhwIjoxNjI0MzkyMTYwfQ.DtMo4iHlzTT4Jph9yRZmCdu5Em1yIrGTyAlu9fCTTtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5766"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1686-AFKz6gDhv6rmwOp0gvys8VhbGck\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "5.511ms"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jun 2021 19:51:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"total_sold\": 0,\n            \"likes\": 0,\n            \"rating\": 0,\n            \"tags\": [\n                \"Creativity\",\n                \"Better Living\"\n            ],\n            \"available_copies\": 23,\n            \"total_copies\": 50,\n            \"title\": \"Effective Python\",\n            \"author\": \"Elizabeth Gilbeth\",\n            \"year\": \"2016\",\n            \"genre\": \"Motivational\",\n            \"publisher\": \"Savannah Books\",\n            \"released_date\": \"2016-11-30T23:00:00.000Z\",\n            \"slug\": \"Creativity Living Beyind Fear\",\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n            \"price\": 29.99,\n            \"created_at\": \"2021-06-22T18:10:26.519Z\",\n            \"updated_at\": \"2021-06-22T18:10:26.519Z\",\n            \"id\": \"c729bf8e-10ab-481f-8818-5bc72414df20\"\n        },\n        {\n            \"total_sold\": 0,\n            \"likes\": 0,\n            \"rating\": 0,\n            \"tags\": [\n                \"Creativity\",\n                \"Better Living\"\n            ],\n            \"available_copies\": 23,\n            \"total_copies\": 50,\n            \"title\": \"Big magic\",\n            \"author\": \"Elizabeth Gilbeth\",\n            \"year\": \"2016\",\n            \"genre\": \"Motivational\",\n            \"publisher\": \"Savannah Books\",\n            \"released_date\": \"2016-11-30T23:00:00.000Z\",\n            \"slug\": \"Creativity Living Beyind Fear\",\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce id velit ut tortor pretium. Metus dictum at tempor commodo ullamcorper a lacus. Ut diam quam nulla porttitor. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Porttitor lacus luctus accumsan tortor. Gravida dictum fusce ut placerat orci nulla. Lacus luctus accumsan tortor posuere. Arcu non sodales neque sodales ut etiam sit. Condimentum lacinia quis vel eros donec. Sodales ut etiam sit amet nisl purus in mollis nunc. Potenti nullam ac tortor vitae purus faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Et netus et malesuada fames ac. Quis enim lobortis scelerisque fermentum dui faucibus in.Id faucibus nisl tincidunt eget nullam non nisi est sit. Cursus vitae congue mauris rhoncus aenean vel. Tristique magna sit amet purus gravida quis. Ipsum a arcu cursus vitae congue mauris. Donec ultrices tincidunt arcu non sodales neque. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sit amet consectetur adipiscing elit pellentesque. Quam lacus suspendisse faucibus interdum. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. A arcu cursus vitae congue. Netus et malesuada fames ac turpis egestas integer eget. Scelerisque purus semper eget duis at. Etiam erat velit scelerisque in dictum non. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Dictum varius duis at consectetur lorem donec. Et tortor at risus viverra adipiscing at in tellus integer. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Tempus urna et pharetra pharetra massa massa. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Eget magna fermentum iaculis eu. Leo duis ut diam quam nulla porttitor massa id. Donec enim diam vulputate ut pharetra sit amet aliquam. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Quis hendrerit dolor magna eget est lorem. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Id neque aliquam vestibulum morbi blandit cursus risus.\",\n            \"price\": 29.99,\n            \"created_at\": \"2021-06-22T18:02:59.613Z\",\n            \"updated_at\": \"2021-06-22T18:02:59.613Z\",\n            \"id\": \"d448b292-6bef-4237-8583-5f64888926dd\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Add To Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": \"100ea2a6-f44a-4c31-a28f-1f52c9a935e4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add To Cart",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": \"100ea2a6-f44a-4c31-a28f-1f52c9a935e4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"carts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-Y53wuE/mmbSikKcT/WualL1N65U\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "42.574ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 13:45:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Increment Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookTitle\": \"Effective Pytho\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts/increment",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"increment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Increment Cart",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookTitle\": \"Effective Pytho\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts/increment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"carts",
+								"increment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-Y53wuE/mmbSikKcT/WualL1N65U\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "2.999ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 13:51:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Decrement Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookTitle\": \"Effective Pytho\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts/decrement",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"decrement"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Decrement Cart",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookTitle\": \"Effective Pytho\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts/decrement",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"carts",
+								"decrement"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-Y53wuE/mmbSikKcT/WualL1N65U\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "2.999ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 13:51:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts/:bookTitle",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						":bookTitle"
+					],
+					"variable": [
+						{
+							"key": "bookTitle",
+							"value": "Effective Pytho"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Cart",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts/:bookTitle",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"carts",
+								":bookTitle"
+							],
+							"variable": [
+								{
+									"key": "bookTitle",
+									"value": "Effective Pytho"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-Y53wuE/mmbSikKcT/WualL1N65U\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "20.917ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 14:15:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Carts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbSI6eyJmaXJzdF9uYW1lIjoiS2F6ZWVtIiwibGFzdF9uYW1lIjoiT2R1dG9sYSIsImVtYWlsX2FkZHJlc3MiOiJvZHV0b2xhX2tAeWFob28uY2EiLCJsb2NhdGlvbiI6IjYsIFdpbGxpYW1zIEF5YW1laCBTdHJlZXQsIE93b3JvbnNob2tpLCBMYWdvcy4iLCJjcmVhdGVkX2F0IjoiMjAyMS0wNi0yMlQxMzo0MjozOC42MzVaIiwidXBkYXRlZF9hdCI6IjIwMjEtMDYtMjJUMTM6NDI6MzguNjM1WiIsImlkIjoiMGIyMDZiMDItODk3NC00MjcxLTk4ZDctMWI3ZDlmMmNlMTAxIn0sImlhdCI6MTYyNDQ1NTMwOCwiZXhwIjoxNjI0NDYyNTA4fQ.ckHfTlnZhJdpCPtAve3oo7gU9lorIRfVe87xhyfHH64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Cart",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/carts/:bookTitle",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"carts",
+								":bookTitle"
+							],
+							"variable": [
+								{
+									"key": "bookTitle",
+									"value": "Effective Pytho"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-Y53wuE/mmbSikKcT/WualL1N65U\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "20.917ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 14:15:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Cart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/carts/:bookTitle",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						":bookTitle"
+					],
+					"variable": [
+						{
+							"key": "bookTitle",
+							"value": "Effective Pytho"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like A Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books/like/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"like",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "100ea2a6-f44a-4c31-a28f-1f52c9a935e4"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Like A Book",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books/like/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"like",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "100ea2a6-f44a-4c31-a28f-1f52c9a935e4"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1013"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f5-3r6M/XbDhbgaXEcm1TvQPKyLXZE\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "9.912ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 14:35:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"total_sold\": 0,\n        \"likes\": 5,\n        \"rating\": 0,\n        \"tags\": [\n            \"better live\",\n            \"wisdom\"\n        ],\n        \"available_copies\": 20,\n        \"images\": [\n            \"https://res.cloudinary.com/enterscale/image/upload/v1624455703/qx-items/zOu_eVhI0-0.jpg\",\n            \"https://res.cloudinary.com/enterscale/image/upload/v1624455731/qx-items/u5q3598wfv-1.jpg\"\n        ],\n        \"title\": \"Effective Pytho\",\n        \"author\": \"Elizabeth Gilbeth\",\n        \"year\": \"2016\",\n        \"publisher\": \"Motivational\",\n        \"released_date\": \"2016-11-30T23:00:00.000Z\",\n        \"slug\": \"hello book slug\",\n        \"description\": \"Books validation failed: genre: Path `genre` is required., title: Path `title` is required., author: Path `author` is required., year: Path `year` is required., publisher: Path `publisher` is required., released_date: Path `released_date` is required., slug: Path `slug` is required., description: Path `description` is required., price: Path `price` is required.\",\n        \"price\": 39.9,\n        \"genre\": \"Motivation\",\n        \"created_at\": \"2021-06-23T13:42:11.553Z\",\n        \"updated_at\": \"2021-06-23T14:35:56.434Z\",\n        \"id\": \"100ea2a6-f44a-4c31-a28f-1f52c9a935e4\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove Like From a Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/books/remove/like/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"remove",
+						"like",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "100ea2a6-f44a-4c31-a28f-1f52c9a935e4"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Remove Like From a Book",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/books/remove/like/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"books",
+								"remove",
+								"like",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "100ea2a6-f44a-4c31-a28f-1f52c9a935e4"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1013"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f5-LO87kP2NN4uHziddZMn3CBHzMNI\""
+						},
+						{
+							"key": "X-Response-Time",
+							"value": "11.343ms"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 23 Jun 2021 14:36:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"total_sold\": 0,\n        \"likes\": 1,\n        \"rating\": 0,\n        \"tags\": [\n            \"better live\",\n            \"wisdom\"\n        ],\n        \"available_copies\": 20,\n        \"images\": [\n            \"https://res.cloudinary.com/enterscale/image/upload/v1624455703/qx-items/zOu_eVhI0-0.jpg\",\n            \"https://res.cloudinary.com/enterscale/image/upload/v1624455731/qx-items/u5q3598wfv-1.jpg\"\n        ],\n        \"title\": \"Effective Pytho\",\n        \"author\": \"Elizabeth Gilbeth\",\n        \"year\": \"2016\",\n        \"publisher\": \"Motivational\",\n        \"released_date\": \"2016-11-30T23:00:00.000Z\",\n        \"slug\": \"hello book slug\",\n        \"description\": \"Books validation failed: genre: Path `genre` is required., title: Path `title` is required., author: Path `author` is required., year: Path `year` is required., publisher: Path `publisher` is required., released_date: Path `released_date` is required., slug: Path `slug` is required., description: Path `description` is required., price: Path `price` is required.\",\n        \"price\": 39.9,\n        \"genre\": \"Motivation\",\n        \"created_at\": \"2021-06-23T13:42:11.553Z\",\n        \"updated_at\": \"2021-06-23T14:36:09.924Z\",\n        \"id\": \"100ea2a6-f44a-4c31-a28f-1f52c9a935e4\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
