@@ -5,7 +5,7 @@
 
 ```bash
 git clone https://github.com/tobslob/Quidax.git
-cd bookstore
+cd Quidax
 ```
 
 #### Step 2: Setup database
@@ -25,9 +25,10 @@ yarn start:dev
 ```
 
 ## Step 5: Documentation
-Documentation is include in the root folder, it's also online
+Documentation is included in the root folder, it's also online
 
-```https://www.getpostman.com/collections/e705f1c451f3cbac6f21
+```bash
+https://www.getpostman.com/collections/e705f1c451f3cbac6f21
 ```
 
 ### TODO
