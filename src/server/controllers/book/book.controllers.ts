@@ -11,7 +11,7 @@ import {
 import { Request, Response } from "express";
 import { Book, BookDTO, BookQuery } from "@app/data/book";
 import { BaseController } from "@app/data/util";
-import { secure } from "@app/common/services"
+import { secure } from "@app/common/services/jsonwebtoken"
 import { Books } from "@app/services/book";
 import { isUpload } from "./book.middleware";
 

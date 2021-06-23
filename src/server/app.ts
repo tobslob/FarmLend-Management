@@ -7,9 +7,9 @@ import mongoose, { Connection } from "mongoose";
 import container from "../common/config/ioc";
 import { Application, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import { defaultMongoOpts, secureMongoOpts } from "../data/database";
 import { cloudinaryConfig } from "@app/common/services/cloudinary";
 import cors from "cors";
+import { Store } from "@app/common/services";
 
 dotenv.config();
 
@@ -85,8 +85,11 @@ export class App {
   getServer = () => this.server;
 
   async connectDB() {
+    await Store.connect();
     await mongoose.connect(process.env.mongodb_url, {
-      ...(process.env.is_production ? secureMongoOpts : defaultMongoOpts)
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
     });
     this.db = mongoose.connection;
   }
@@ -96,5 +99,6 @@ export class App {
    */
   async closeDB() {
     await mongoose.disconnect();
+    await Store.quit();
   }
 }

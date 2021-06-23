@@ -1,7 +1,7 @@
 import { UserRepo, UserDTO, User, LoginDTO } from '@app/data/user'
 import { Passwords } from './password'
 import { UnAuthorisedError } from '@app/data/util'
-import { seal } from '@app/common/services'
+import { seal } from '@app/common/services/jsonwebtoken'
 import { config } from 'dotenv'
 
 config()
