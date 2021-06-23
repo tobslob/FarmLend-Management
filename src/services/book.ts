@@ -1,8 +1,15 @@
 import { BookRepo, BookDTO, BookQuery, Book } from "@app/data/book";
 import { orFromQueryMap } from "@app/data/util";
+import uploadImage from "./upload";
+import { Request, Response } from "express";
 
 class BookService {
-  async addBook(book: BookDTO) {
+  async addBook(book: BookDTO, req: Request, res: Response) {
+    await uploadImage(req, res)
+    book["images"] = req["imageUrls"];
+
+    if (!book["images"]) throw new Error("Image is required.");
+
     return await BookRepo.create(book)
   }
 
@@ -10,9 +17,9 @@ class BookService {
     return await BookRepo.byID(id)
   }
 
-  /*
+  /**
    * all books are returned if no query parameter is pass
-   * @param query search by title, author, genre, tags, publisher, slug
+   * @param query - search by title, author, genre, tags, publisher, slug
    */
   async getBooks(query: BookQuery) {
     const titleRegex = query.title && new RegExp(`.*${query.title}.*`, "i");

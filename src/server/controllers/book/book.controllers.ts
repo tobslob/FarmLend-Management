@@ -6,26 +6,27 @@ import {
   response,
   httpGet,
   queryParam,
-  requestParam,
+  requestParam
 } from "inversify-express-utils";
 import { Request, Response } from "express";
 import { Book, BookDTO, BookQuery } from "@app/data/book";
 import { BaseController } from "@app/data/util";
 import { secure } from "@app/common/services"
 import { Books } from "@app/services/book";
+import { isUpload } from "./book.middleware";
 
 type ControllerResponse = Book | Book[];
 
 @controller("/books")
 export class UserBookController extends BaseController<ControllerResponse> {
-  @httpPost("/", secure)
+  @httpPost("/", secure, isUpload)
   async addBook(
     @request() req: Request,
     @response() res: Response,
     @requestBody() body: BookDTO
   ) {
     try {
-      const book = await Books.addBook(body);
+      const book = await Books.addBook(body, req, res);
       this.handleSuccess(req, res, book);
     }catch(error) {
       this.handleError(req, res, error);

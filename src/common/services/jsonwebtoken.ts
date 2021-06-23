@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import { Users } from "@app/services/user";
 import { NotFoundError, handleError, NoAuthenticationError } from "@app/data/util";
 import { UNAUTHORIZED } from "http-status-codes";
-import { Auth, User } from "@app/data/user";
+import { User } from "@app/data/user";
 
 config();
 
@@ -54,13 +54,5 @@ export async function secure(req: Request, res: Response, next: NextFunction) {
     return next();
   } catch (error) {
     return handleError(req, res, error.message, UNAUTHORIZED);
-  }
-}
-
-declare global {
-  namespace Express {
-    export interface Request {
-      user: Auth;
-    }
   }
 }

@@ -16,6 +16,7 @@ export interface Book extends Model {
   price: number;
   available_copies: number;
   total_copies: number;
+  images: string[];
 }
 
 export interface BookDTO {

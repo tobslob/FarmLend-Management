@@ -8,6 +8,8 @@ import container from "../common/config/ioc";
 import { Application, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { defaultMongoOpts, secureMongoOpts } from "../data/database";
+import { cloudinaryConfig } from "@app/common/services/cloudinary";
+import cors from "cors";
 
 dotenv.config();
 
@@ -26,6 +28,18 @@ export class App {
       app.use(responseTime());
       app.use(bodyparser.urlencoded({ extended: true }));
       app.use(bodyparser.json());
+      // Handle image upload
+      app.use("*", cloudinaryConfig);
+
+      // CORS
+      const domains = [""];
+      const corsConf = {
+        origin: [/localhost/, ...domains.map(domain => new RegExp(`${domain}$`))],
+        credentials: true
+      };
+
+      app.use(cors(corsConf));
+      app.options("*", cors(corsConf));
     });
 
     this.server.setErrorConfig((app: Application) => {
