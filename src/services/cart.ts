@@ -13,10 +13,14 @@ class CartService {
       throw new Error(`${book.title} is not more available`)
     }
 
+    const quantity = 1;
+    const total_price = book.price
+
     const cart: Cart = {
-      ...book,
-      quantity: 1,
-      total_price: book.price
+      // @ts-ignore
+      ...book._doc,
+      quantity,
+      total_price
     }
 
     const userId = req["user"].id;
@@ -83,7 +87,8 @@ class CartService {
     if(!cart) {
       return null
     }
-    const objCart: Cart = JSON.parse(cart);
+    const objCart = JSON.parse(cart);
+
     return objCart
   }
 

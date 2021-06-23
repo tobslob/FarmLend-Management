@@ -107,7 +107,8 @@ export class InvalidSessionError extends Error {
   }
 }
 
-export class NoAuthenticationError extends Error {
+export class NoAuthenticationError extends ControllerError {
+  code = HttpStatus.UNAUTHORIZED;
   constructor() {
     super("There's no session associated with this request");
   }

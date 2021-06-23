@@ -19,7 +19,7 @@ import { isBook } from "./book.validator";
 type ControllerResponse = Book | Book[];
 
 @controller("/books")
-export class UserBookController extends BaseController<ControllerResponse> {
+export class BookController extends BaseController<ControllerResponse> {
   @httpPost("/", secure, isUpload, validate(isBook))
   async addBook(
     @request() req: Request,

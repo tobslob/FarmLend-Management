@@ -5,7 +5,8 @@ import {
   request,
   response,
   httpGet,
-  requestParam
+  requestParam,
+  httpDelete
 } from "inversify-express-utils";
 import { Request, Response } from "express";
 import { BaseController } from "@app/data/util";
@@ -16,7 +17,7 @@ import { Carts } from "@app/services/cart";
 type ControllerResponse = Cart | Cart[];
 
 @controller("/carts")
-export class UserBookController extends BaseController<ControllerResponse> {
+export class CartController extends BaseController<ControllerResponse> {
   @httpPost("/", secure)
   async addToCart(
     @request() req: Request,
@@ -25,7 +26,9 @@ export class UserBookController extends BaseController<ControllerResponse> {
   ) {
     try {
       await Carts.addToCart(body.bookId, req)
-      res.sendStatus(200);
+      res.status(200).json({
+        status: "success",
+      });
     }catch(error) {
       this.handleError(req, res, error);
     }
@@ -39,7 +42,9 @@ export class UserBookController extends BaseController<ControllerResponse> {
   ) {
     try {
       await Carts.incrementBookInCart(body.bookTitle, req)
-      res.sendStatus(200);
+      res.status(200).json({
+        status: "success",
+      });
     }catch(error) {
       this.handleError(req, res, error);
     }
@@ -53,7 +58,9 @@ export class UserBookController extends BaseController<ControllerResponse> {
   ) {
     try {
       await Carts.decrementBookInCart(body.bookTitle, req)
-      res.sendStatus(200);
+      res.status(200).json({
+        status: "success",
+      });
     }catch(error) {
       this.handleError(req, res, error);
     }
@@ -81,6 +88,22 @@ export class UserBookController extends BaseController<ControllerResponse> {
     try {
       const cart = await Carts.getCart(bookTitle, req)
       this.handleSuccess(req, res, cart)
+    }catch(error) {
+      this.handleError(req, res, error);
+    }
+  }
+
+  @httpDelete("/:bookTitle", secure)
+  async removeCart(
+    @request() req: Request,
+    @response() res: Response,
+    @requestParam("bookTitle") bookTitle: string
+  ) {
+    try {
+      await Carts.deleteFromCart(bookTitle, req)
+      res.status(200).json({
+        status: "success",
+      });
     }catch(error) {
       this.handleError(req, res, error);
     }
