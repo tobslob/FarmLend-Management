@@ -13,7 +13,7 @@ class BookService {
     return await BookRepo.create(book)
   }
 
-  async getBook(id: string) {
+  async getBook(id: string): Promise<Book> {
     return await BookRepo.byID(id)
   }
 
@@ -45,7 +45,7 @@ class BookService {
       let directQuery = BookRepo.model.find(conditions).skip(offset).sort({ created_at: -1 });
 
       if (query.limit !== 0) {
-        directQuery = directQuery.limit(limit);
+        directQuery = directQuery.limit(limit ? limit: 24);
       }
 
       return directQuery.exec((err, result) => {

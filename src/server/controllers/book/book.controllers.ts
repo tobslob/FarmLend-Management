@@ -60,4 +60,18 @@ export class UserBookController extends BaseController<ControllerResponse> {
       this.handleError(req, res, error);
     }
   }
+
+  @httpGet("/", secure)
+  async getFeatureBooks(
+    @request() req: Request,
+    @response() res: Response,
+    @queryParam() query: BookQuery
+  ) {
+    try {
+      const book = await Books.getBooks(query);
+      this.handleSuccess(req, res, book);
+    }catch(error) {
+      this.handleError(req, res, error);
+    }
+  }
 }
