@@ -17,6 +17,26 @@ class BookService {
     return await BookRepo.byID(id)
   }
 
+  async likeBook(id: string): Promise<Book> {
+    const book = await BookRepo.byID(id)
+
+    book["likes"] += 1
+
+    return await BookRepo.update({ _id: id}, {
+      likes: book["likes"]
+    })
+  }
+
+  async removeLikeFromBook(id: string): Promise<Book> {
+    const book = await BookRepo.byID(id)
+
+    book["likes"] -= 1
+
+    return await BookRepo.update({ _id: id}, {
+      likes: book["likes"]
+    })
+  }
+
   /**
    * all books are returned if no query parameter is pass
    * @param query - search by title, author, genre, tags, publisher, slug

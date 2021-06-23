@@ -75,4 +75,32 @@ export class BookController extends BaseController<ControllerResponse> {
       this.handleError(req, res, error);
     }
   }
+
+  @httpGet("/like/:id", secure)
+  async likeBook(
+    @request() req: Request,
+    @response() res: Response,
+    @requestParam("id") id: string
+  ) {
+    try {
+      const book = await Books.likeBook(id);
+      this.handleSuccess(req, res, book);
+    }catch(error) {
+      this.handleError(req, res, error);
+    }
+  }
+
+  @httpGet("/remove/like/:id", secure)
+  async removeLikeFromBook(
+    @request() req: Request,
+    @response() res: Response,
+    @requestParam("id") id: string
+  ) {
+    try {
+      const book = await Books.removeLikeFromBook(id);
+      this.handleSuccess(req, res, book);
+    }catch(error) {
+      this.handleError(req, res, error);
+    }
+  }
 }
