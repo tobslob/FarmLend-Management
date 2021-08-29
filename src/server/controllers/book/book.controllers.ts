@@ -97,7 +97,7 @@ export class BookController extends BaseController<ControllerResponse> {
     @requestParam("id") id: string
   ) {
     try {
-      const book = await Books.removeLikeFromBook(id);
+      const book = await Books.disLikeBook(id);
       this.handleSuccess(req, res, book);
     }catch(error) {
       this.handleError(req, res, error);

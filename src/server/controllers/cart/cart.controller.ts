@@ -25,26 +25,22 @@ export class CartController extends BaseController<ControllerResponse> {
     @requestBody() body: CartDTO
   ) {
     try {
-      await Carts.addToCart(body.bookId, req)
-      res.status(200).json({
-        status: "success",
-      });
+      const cart = await Carts.createCart(body.bookId, req)
+      this.handleSuccess(req, res, cart)
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
   @httpPost("/increment", secure)
-  async incrementBookInCart(
+  async incrementCart(
     @request() req: Request,
     @response() res: Response,
     @requestBody() body: CartDTO
   ) {
     try {
-      await Carts.incrementBookInCart(body.bookTitle, req)
-      res.status(200).json({
-        status: "success",
-      });
+      const cart = await Carts.incrementCart(body.bookId, req);
+      this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
     }
@@ -57,10 +53,8 @@ export class CartController extends BaseController<ControllerResponse> {
     @requestBody() body: CartDTO
   ) {
     try {
-      await Carts.decrementBookInCart(body.bookTitle, req)
-      res.status(200).json({
-        status: "success",
-      });
+      const cart = await Carts.decrementCart(body.bookId, req)
+      this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
     }
@@ -79,31 +73,29 @@ export class CartController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpGet("/:bookTitle", secure)
+  @httpGet("/:bookId", secure)
   async getCart(
     @request() req: Request,
     @response() res: Response,
-    @requestParam("bookTitle") bookTitle: string
+    @requestParam("bookId") bookId: string
   ) {
     try {
-      const cart = await Carts.getCart(bookTitle, req)
+      const cart = await Carts.getCart(bookId, req)
       this.handleSuccess(req, res, cart)
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpDelete("/:bookTitle", secure)
+  @httpDelete("/:bookId", secure)
   async removeCart(
     @request() req: Request,
     @response() res: Response,
-    @requestParam("bookTitle") bookTitle: string
+    @requestParam("bookId") bookId: string
   ) {
     try {
-      await Carts.deleteFromCart(bookTitle, req)
-      res.status(200).json({
-        status: "success",
-      });
+      const cart = await Carts.removeFromCart(bookId, req)
+      this.handleSuccess(req, res, cart)
     }catch(error) {
       this.handleError(req, res, error);
     }
