@@ -5,10 +5,11 @@ import { Request, Response } from 'express'
 
 class BookService {
   async addBook(book: BookDTO, req: Request, res: Response) {
-    await uploadImage(req, res)
-    book['images'] = req['imageUrls']
 
-    if (!book['images']) throw new Error('Image is required.')
+    if (req?.files) {
+      await uploadImage(req, res)
+      book['images'] = req['imageUrls']
+    }
 
     return await BookRepo.create(book)
   }

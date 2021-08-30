@@ -16,7 +16,9 @@ function removeSensitiveData(body: any, props: string[]) {
  * for Bunyan logging
  * @param sensitiveProps key names of sensitive properties
  */
-export function createRequestSerializer(...sensitiveProps: string[]): (req: Request) => object {
+export function createRequestSerializer(
+  ...sensitiveProps: string[]
+): (req: Request) => object {
   return (req: Request) => {
     if (!req || !req.connection) return req;
 

@@ -16,51 +16,51 @@ import { Carts } from "@app/services/cart";
 
 type ControllerResponse = Cart | Cart[];
 
-@controller("/carts")
+@controller("/carts", secure)
 export class CartController extends BaseController<ControllerResponse> {
-  @httpPost("/", secure)
+  @httpPost("/")
   async addToCart(
     @request() req: Request,
     @response() res: Response,
     @requestBody() body: CartDTO
   ) {
     try {
-      const cart = await Carts.createCart(body.bookId, req)
+      const cart = await Carts.createCart(body.book_id, req)
       this.handleSuccess(req, res, cart)
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpPost("/increment", secure)
+  @httpPost("/increment")
   async incrementCart(
     @request() req: Request,
     @response() res: Response,
     @requestBody() body: CartDTO
   ) {
     try {
-      const cart = await Carts.incrementCart(body.bookId, req);
+      const cart = await Carts.incrementCart(body.book_id, req);
       this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpPost("/decrement", secure)
+  @httpPost("/decrement")
   async decrementBookInCart(
     @request() req: Request,
     @response() res: Response,
     @requestBody() body: CartDTO
   ) {
     try {
-      const cart = await Carts.decrementCart(body.bookId, req)
+      const cart = await Carts.decrementCart(body.book_id, req)
       this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpGet("/", secure)
+  @httpGet("/")
   async getCarts(
     @request() req: Request,
     @response() res: Response
@@ -73,7 +73,7 @@ export class CartController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpGet("/:bookId", secure)
+  @httpGet("/:bookId")
   async getCart(
     @request() req: Request,
     @response() res: Response,
@@ -87,7 +87,7 @@ export class CartController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpDelete("/:bookId", secure)
+  @httpDelete("/:bookId")
   async removeCart(
     @request() req: Request,
     @response() res: Response,

@@ -10,5 +10,5 @@ export interface Cart extends Model {
 }
 
 export interface CartDTO {
-  bookId?: string;
+  book_id?: string;
 }

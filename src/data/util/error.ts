@@ -1,5 +1,8 @@
 import HttpStatus from "http-status-codes";
-import { Request, Response } from "express";
+import { Request, Response, ErrorRequestHandler, NextFunction } from "express";
+import { Log } from "@app/common/services/log";
+import Logger from "bunyan";
+import { responseHandler } from "./response";
 
 /**
  * Base error type for errors that the server can respond
@@ -114,8 +117,40 @@ export class NoAuthenticationError extends ControllerError {
   }
 }
 
+export const errors = universalErrorHandler(Log);
+
+/**
+ * A global error handler for an entire app.
+ * @param logger Logger to log errors and their corresponding
+ * request/response pair
+ */
+export function universalErrorHandler(logger: Logger): ErrorRequestHandler {
+  // useful when we have call an asynchrous function that might throw
+  // after we've sent a response to client
+  return async (err: any, req: Request, res: Response, next: NextFunction) => {
+    if (res.headersSent) return next(err);
+    if (err instanceof NoAuthenticationError) {
+      return responseHandler(res, err.code, err.message, null);
+    }
+
+    // exit early when we don't understand it
+    if (!(err instanceof ControllerError)) {
+      logger.error({ err, res, req });
+      return responseHandler(
+        res,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        "We are having internal issues. Please bear with us",
+        null
+      );
+    }
+
+    responseHandler(res, err.code, err.message, err["data"]);
+    logger.error({ err, res, req });
+  };
+}
+
 export const handleError = (req: Request, res: Response, error: any, code: number) => {
-  res.json({
+  res.status(code).json({
     code,
     error
   });

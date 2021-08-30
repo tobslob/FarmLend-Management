@@ -5,11 +5,12 @@ import responseTime from "response-time";
 import { getRouteInfo, InversifyExpressServer } from "inversify-express-utils";
 import mongoose, { Connection } from "mongoose";
 import container from "../common/config/ioc";
-import { Application, Request, Response, NextFunction } from "express";
+import { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import { cloudinaryConfig } from "@app/common/services/cloudinary";
 import cors from "cors";
 import { Store } from "@app/common/services";
+import { errors } from "@app/data/util";
 
 dotenv.config();
 
@@ -64,16 +65,8 @@ export class App {
         });
       });
 
-      // handle all error
-      app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-        if (err) {
-          return res.status(500).json({
-            status: "error",
-            data: err.message
-          });
-        }
-        return next();
-      });
+      // handle thrown error
+      app.use(errors);
     });
   }
 

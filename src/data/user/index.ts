@@ -1,3 +1,3 @@
 export * from "./user.model";
-export * from "./user.repo";
 export * from "./user.schema";
+export * from "./user.repo";

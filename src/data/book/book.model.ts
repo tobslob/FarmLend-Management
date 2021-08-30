@@ -15,7 +15,7 @@ export interface Book extends Model {
   description: string;
   price: number;
   available_copies: number;
-  images: string[];
+  images?: string[];
 }
 
 export interface BookDTO {

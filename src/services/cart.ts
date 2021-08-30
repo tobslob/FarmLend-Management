@@ -4,7 +4,7 @@ import { CartRepo } from '@app/data/cart/cart.repo'
 
 class CartService {
   async createCart(book_id: string, req: Request) {
-    const book = await Books.getBook(book_id)
+    const book = await Books.getBook(book_id);
 
     if (book.available_copies <= 0) {
       throw new Error(`${book.title} is out of stock`)
@@ -13,7 +13,7 @@ class CartService {
     const isCart = await CartRepo.model.exists({ book_id })
 
     if (isCart) {
-      const cart = await CartRepo.byQuery({ userId: req['user'].id, book_id })
+      const cart = await CartRepo.byQuery({ user_id: req['user'].id, book_id })
 
       return await CartRepo.atomicUpdate(
         { userId: req['user'].id, book_id },
@@ -30,6 +30,7 @@ class CartService {
       price: book.price,
       total_price: book.price,
       quantity: 1,
+      user_id: req['user'].id
     })
   }
 
