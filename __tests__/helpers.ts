@@ -1,5 +1,4 @@
 import faker from "faker";
-import { Test } from "supertest";
 import dotenv from "dotenv";
 import { seal } from "../src/common/services/jsonwebtoken";
 
@@ -13,9 +12,10 @@ dotenv.config();
 export type Choices = [() => any | any, number][];
 
 export interface Session {
-  workspace?: string;
   user?: string;
-  security_key?: string;
+  first_name?: string;
+  last_name?: string;
+  email_address?: string;
   [key: string]: any;
 }
 
@@ -68,9 +68,9 @@ export async function repeat(n: number, fn: () => Promise<any>): Promise<any[]> 
 /**with possible extra properties(e.g. user permissions)
  * @param extras extra permissions an session properties
  */
-export function createSession(extras = {}): Session {
+export function createSession(id: string, extras = {}): Session {
   return {
-    user: faker.random.uuid(),
+    id,
     email_address: faker.internet.email(),
     first_name: faker.name.firstName(),
     last_name: faker.name.lastName(),
@@ -83,17 +83,6 @@ export function createSession(extras = {}): Session {
  * @param session session used to derive a token
  */
 export async function createJsonWebToken(session?: Session) {
-  const token = await seal(session, process.env.SECRET_KEY, 30);
+  const token = await seal(session, process.env.SECRET_KEY, "1h");
   return `Bearer ${token}`;
-}
-
-
-export async function getResponse<T = any>(test: Test): Promise<T> {
-  const response = await test;
-  return response.body.data as T;
-}
-
-export async function getError(test: Test): Promise<string> {
-  const response = await test;
-  return response.body.message;
 }
