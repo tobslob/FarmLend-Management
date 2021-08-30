@@ -34,11 +34,3 @@ Documentation is included in the root folder, it's also online
 ```bash
 https://www.getpostman.com/collections/e705f1c451f3cbac6f21
 ```
-
-## TODO
-- Write Test
-- Cover more edge cases
-- formatter
-
-## Challenges
-I did not have enough time to work this, wrote the code in less or little more than 16 hours
