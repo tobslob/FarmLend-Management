@@ -169,8 +169,6 @@ describe('Creating cart', () => {
       .send({ book_id: book._id })
       .expect(OK)
 
-      console.log(data)
-
     const {
       body,
     } = await request
