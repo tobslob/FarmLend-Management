@@ -66,10 +66,12 @@
     "@types/reflect-metadata": "^0.1.0",
     "@types/response-time": "^2.3.4",
     "@types/shortid": "^0.0.29",
+    "@types/supertest": "^2.0.11",
     "@types/uuid": "^3.4.4",
     "faker": "^5.5.3",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
+    "supertest": "^6.1.6",
     "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
   },

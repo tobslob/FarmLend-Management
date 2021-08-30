@@ -1,12 +1,12 @@
 import { Model } from "../database";
 
 export interface Cart extends Model {
-  bookId: string;
-  bookTitle: string;
+  book_id: string;
+  book_title: string;
   quantity: number;
   price: number;
-  totalPrice: number;
-  userId: string;
+  total_price: number;
+  user_id: string;
 }
 
 export interface CartDTO {
