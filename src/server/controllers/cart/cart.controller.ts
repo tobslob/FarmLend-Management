@@ -32,28 +32,28 @@ export class CartController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpPost("/increment")
+  @httpPost("/increment/:id")
   async incrementCart(
     @request() req: Request,
     @response() res: Response,
-    @requestBody() body: CartDTO
+    @requestParam("id") id: string
   ) {
     try {
-      const cart = await Carts.incrementCart(body.book_id, req);
+      const cart = await Carts.incrementCart(id, req);
       this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpPost("/decrement")
+  @httpPost("/decrement/:id")
   async decrementBookInCart(
     @request() req: Request,
     @response() res: Response,
-    @requestBody() body: CartDTO
+    @requestParam("id") id: string
   ) {
     try {
-      const cart = await Carts.decrementCart(body.book_id, req)
+      const cart = await Carts.decrementCart(id, req);
       this.handleSuccess(req, res, cart);
     }catch(error) {
       this.handleError(req, res, error);
@@ -73,21 +73,21 @@ export class CartController extends BaseController<ControllerResponse> {
     }
   }
 
-  @httpGet("/:bookId")
+  @httpGet("/:id")
   async getCart(
     @request() req: Request,
     @response() res: Response,
-    @requestParam("bookId") bookId: string
+    @requestParam("id") id: string
   ) {
     try {
-      const cart = await Carts.getCart(bookId, req)
+      const cart = await Carts.getCart(id, req)
       this.handleSuccess(req, res, cart)
     }catch(error) {
       this.handleError(req, res, error);
     }
   }
 
-  @httpDelete("/:bookId")
+  @httpDelete("/:id")
   async removeCart(
     @request() req: Request,
     @response() res: Response,

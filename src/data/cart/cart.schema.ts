@@ -8,5 +8,5 @@ export const CartSchema = SchemaFactory({
   quantity: { type: SchemaTypes.Number, required: true},
   price: { type: SchemaTypes.Number, required: true },
   total_price: { type: SchemaTypes.Number, required: true },
-  user_id: { ...trimmedString, required: true, index: true, unique: true },
+  user_id: { ...trimmedString, required: true, index: true },
 });

@@ -10,13 +10,13 @@ class CartService {
       throw new Error(`${book.title} is out of stock`)
     }
 
-    const isCart = await CartRepo.model.exists({ book_id })
+    const isCart = await CartRepo.model.exists({ book_id });
 
     if (isCart) {
       const cart = await CartRepo.byQuery({ user_id: req['user'].id, book_id })
 
       return await CartRepo.atomicUpdate(
-        { userId: req['user'].id, book_id },
+        { user_id: req['user'].id, book_id },
         {
           $inc: { quantity: 1 },
           $set: { total_price: cart.total_price + cart.price },
@@ -34,10 +34,10 @@ class CartService {
     })
   }
 
-  async incrementCart(book_id: string, req: Request) {
-    const cart = await CartRepo.byQuery({ userId: req['user'].id, book_id })
+  async incrementCart(_id: string, req: Request) {
+    const cart = await CartRepo.byQuery({ user_id: req['user'].id, _id })
     return await CartRepo.atomicUpdate(
-      { userId: req['user'].id, book_id },
+      { user_id: req['user'].id, _id },
       {
         $inc: { quantity: 1 },
         $set: { total_price: cart.total_price + cart.price },
@@ -45,29 +45,35 @@ class CartService {
     )
   }
 
-  async decrementCart(book_id: string, req: Request) {
-    const cart = await CartRepo.byQuery({ userId: req['user'].id, book_id })
-    return await CartRepo.atomicUpdate(
-      { userId: req['user'].id, book_id },
+  async decrementCart(_id: string, req: Request) {
+    const cart = await CartRepo.byQuery({ user_id: req['user'].id, _id })
+    const decreCart = await CartRepo.atomicUpdate(
+      { user_id: req['user'].id, _id },
       {
         $inc: { quantity: -1 },
         $set: { total_price: cart.total_price - cart.price },
       },
     )
+
+    if (decreCart.quantity <= 0) {
+      await CartRepo.destroy(cart.id);
+    }
+
+    return decreCart;
   }
 
   async getCarts(req: Request) {
-    return await CartRepo.all({ conditions: { userId: req['user'].id } })
+    return await CartRepo.all({ conditions: { user_id: req['user'].id } })
   }
 
-  async getCart(book_id: string, req: Request) {
-    const userId = req['user'].id
-    return await CartRepo.byQuery({ userId, book_id })
+  async getCart(_id: string, req: Request) {
+    const user_id = req['user'].id
+    return await CartRepo.byQuery({ user_id, _id })
   }
 
-  async removeFromCart(book_id: string, req: Request) {
-    const userId = req['user'].id
-    return await CartRepo.destroy({ book_id, userId })
+  async removeFromCart(id: string, req: Request) {
+    const user_id = req['user'].id
+    return await CartRepo.destroy({ id, user_id });
   }
 
   async checkOut(req: Request) {
