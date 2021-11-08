@@ -5,7 +5,7 @@
 
 ```bash
 git clone https://github.com/tobslob/starter.git
-cd Quidax
+cd starter
 ```
 
 #### Step 2: Setup database
@@ -26,11 +26,4 @@ yarn build
 yarn watch
 
 yarn start:dev
-```
-
-## Step 5: Documentation
-Documentation is included in the root folder, it's also online
-
-```bash
-https://www.getpostman.com/collections/e705f1c451f3cbac6f21
 ```
