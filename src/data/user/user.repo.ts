@@ -5,7 +5,7 @@ import { UserSchema } from "./user.schema";
 
 class UserRepository extends BaseRepository<User> {
   constructor() {
-    super(connection, "Users", UserSchema);
+    super(connection, "User", UserSchema);
   }
 }
 
