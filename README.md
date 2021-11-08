@@ -4,7 +4,7 @@
 #### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/tobslob/Quidax.git
+git clone https://github.com/tobslob/starter.git
 cd Quidax
 ```
 
