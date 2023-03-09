@@ -17,7 +17,7 @@ export class User extends BaseModel {
 
   @Index
   @ForeignKey(() => Organization)
-  @Column({ allowNull: false, validate: { notEmpty: true } })
+  @Column({ allowNull: true, validate: { notEmpty: true } })
   organizationId: string;
 
   @Column({ allowNull: false, validate: { notEmpty: true, isAlphanumeric: true } })

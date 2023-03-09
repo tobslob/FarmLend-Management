@@ -3,9 +3,10 @@ import { userRepo } from "@app/data/repositories/user.repo";
 import { Passwords } from "./password";
 import { seal } from "@app/common/services/jsonwebtoken";
 import { config } from "dotenv";
-import { UnAuthorisedError } from "@app/data/util";
+import { NotFoundError, UnAuthorisedError } from "@app/data/util";
 import db from "@app/data/database/connect";
 import { Organizations } from "./organization";
+import { orgRepo } from "@app/data/repositories/organization.repo";
 
 config();
 
@@ -47,6 +48,12 @@ class UserService {
   }
 
   async addUserToOrganization(user: UserDTO) {
+    if (user.organizationId) {
+      const org = (await orgRepo.findById(user?.organizationId)).toJSON()
+      if (!org) {
+        throw new NotFoundError("Invalid organization id")
+      }
+    }
     return await userRepo.create(user);
   }
 

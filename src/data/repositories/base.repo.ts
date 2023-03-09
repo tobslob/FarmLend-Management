@@ -47,6 +47,6 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
 
   async findOne([T]: any) {
     // @ts-ignore
-    return await this.model.findOne({ ...T });
+    return await this.model.findOne({ T });
   }
 }
