@@ -12,14 +12,16 @@ const start = async () => {
     const app = new App();
     const appServer = app.getServer().build();
 
-    // connect to MongoDB
+    // connect to DB
     await app.connectDB();
-    Log.info("📦  MongoDB Connected!");
+    Log.info("📦  PostgresDB Connected!");
 
     // start server
     const httpServer = http.createServer(appServer);
     httpServer.listen(process.env.PORT);
-    httpServer.on("listening", () => Log.info(`🚀  ${process.env.service_name} listening on ` + process.env.PORT));
+    httpServer.on("listening", () =>
+      Log.info(`🚀  ${process.env.SERVICE_NAME} listening on ` + process.env.PORT)
+    );
   } catch (err) {
     Log.error(err, "Fatal server error");
   }

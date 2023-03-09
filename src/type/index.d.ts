@@ -1,6 +1,6 @@
-import { Auth } from "@app/data/user";
+import { Auth } from "@app/data/models";
 
-declare module 'express' {
+declare module "express" {
   export interface Request {
     user: Auth;
     file: any;

@@ -146,4 +146,3 @@ export function paginate(query: PaginationQuery) {
 
   return [per_page, offset];
 }
-

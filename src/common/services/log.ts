@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const Log: Logger = createLogger({
-  name: process.env.service_name,
+  name: process.env.SERVICE_NAME
   // serializers: {
   //   err: errSerializer,
   //   res: resSerializer,

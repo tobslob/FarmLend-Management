@@ -15,4 +15,3 @@ export const responseHandler = (res, code, statusMessage, data) =>
     code,
     message: statusMessage
   });
-  

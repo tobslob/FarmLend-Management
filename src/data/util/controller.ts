@@ -1,14 +1,9 @@
-import {
-  Query,
-  ControllerError,
-  ModelNotFoundError,
-  DuplicateModelError,
-} from '@app/data/util'
-import { Request, Response } from 'express'
-import { injectable } from 'inversify'
-import _ from 'lodash'
-import { NOT_FOUND, BAD_REQUEST, CONFLICT } from 'http-status-codes'
-import { Log } from '@app/common/services/log'
+import { Query, ControllerError, ModelNotFoundError, DuplicateModelError } from "@app/data/util";
+import { Request, Response } from "express";
+import { injectable } from "inversify";
+import _ from "lodash";
+import { NOT_FOUND, BAD_REQUEST, CONFLICT } from "http-status-codes";
+import { Log } from "@app/common/services/log";
 
 @injectable()
 export class Controller<T> {
@@ -22,10 +17,15 @@ export class Controller<T> {
    */
   async handleSuccess(req: Request, res: Response, result: T) {
     res.json({
-      status: 'success',
-      data: result,
-    })
-    Log.info({ req, res })
+      status: "success",
+      data: result
+    });
+    Log.info({ req, res });
+  }
+
+  dbErrors(err) {
+    if (err.errors) {
+    }
   }
 
   /*
@@ -35,11 +35,11 @@ export class Controller<T> {
   getHTTPErrorCode(err) {
     // check if error code exists and is a valid HTTP code.
     if (err.code >= 100 && err.code < 600) {
-      if (err instanceof ModelNotFoundError) return NOT_FOUND
-      if (err instanceof DuplicateModelError) return CONFLICT
-      return err.code
+      if (err instanceof ModelNotFoundError) return NOT_FOUND;
+      if (err instanceof DuplicateModelError) return CONFLICT;
+      return err.code;
     }
-    return BAD_REQUEST
+    return BAD_REQUEST;
   }
 
   /**
@@ -54,24 +54,21 @@ export class Controller<T> {
      * Useful when we call an asynchrous function that might throw
      * after we've sent a response to client
      */
-    if (res.headersSent) return Log.error(err)
+    if (res.headersSent) return Log.error(err);
 
-    const { code } = <ControllerError>err
+    const { code } = <ControllerError>err;
 
-    const errorMessage = message || err.message
+    const errorMessage = message || err.message;
 
     res.status(this.getHTTPErrorCode(err) ?? code).json({
       code: this.getHTTPErrorCode(err) ?? code,
       data: null,
-      message: errorMessage,
-    })
-    Log.error(req, res, err)
+      message: errorMessage
+    });
+    Log.error(req, res, err);
   }
 }
 
-export type PaginationOptions = Pick<
-  Query,
-  Exclude<keyof Query, 'conditions' | 'archived'>
->
+export type PaginationOptions = Pick<Query, Exclude<keyof Query, "conditions" | "archived">>;
 
 export class BaseController<T> extends Controller<T> {}

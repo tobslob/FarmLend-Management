@@ -1,5 +1,5 @@
 import { config, v2 } from "cloudinary";
-import  dotenv from "dotenv";
+import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
 
 dotenv.config();
