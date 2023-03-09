@@ -34,8 +34,8 @@ export function unseal(token: string, secret: string): Promise<any> {
 
 export async function secure(req: Request, res: Response, next: NextFunction) {
   try {
-    if(!req.headers.authorization) throw new NoAuthenticationError();
-    const token = req.headers.authorization.split(' ')[1];
+    if (!req.headers.authorization) throw new NoAuthenticationError();
+    const token = req.headers.authorization.split(" ")[1];
 
     if (!token) {
       return null;
