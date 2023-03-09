@@ -1,44 +1,81 @@
-import { UserRepo, UserDTO, User, LoginDTO } from '@app/data/user'
-import { Passwords } from './password'
-import { UnAuthorisedError } from '@app/data/util'
-import { seal } from '@app/common/services/jsonwebtoken'
-import { config } from 'dotenv'
+import { UserDTO, LoginDTO, User } from "@app/data/models";
+import { userRepo } from "@app/data/repositories/user.repo";
+import { Passwords } from "./password";
+import { seal } from "@app/common/services/jsonwebtoken";
+import { config } from "dotenv";
+import { UnAuthorisedError } from "@app/data/util";
+import db from "@app/data/database/connect";
+import { Organizations } from "./organization";
 
-config()
+config();
 
 class UserService {
   constructor() {}
 
-  async createUser(user: UserDTO): Promise<User> {
-    const password = await Passwords.generateHash(user.password)
-
-    return await UserRepo.create({
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email_address: user.email_address,
-      location: user.location,
-      password,
-    })
+  async createUser(user: UserDTO) {
+    let usr: User;
+    await db.sequelize.transaction().then(async t => {
+      return await Organizations.createOrganization(
+        {
+          name: user.organizationName,
+          type: user.organizationType
+        },
+        { ...t }
+      )
+        .then(async organization => {
+          usr = await userRepo.create(
+            {
+              ...user,
+              // @ts-ignore
+              organizationId: organization.id,
+              // @ts-ignore
+              organizationName: organization.organizationName,
+              // @ts-ignore
+              organizationType: organization.organizationType
+            },
+            { ...t }
+          );
+        })
+        .then(t.commit.bind(t))
+        .catch(error => {
+          // console.log("ERRR", error)
+          t.rollback.bind(t);
+          throw new Error(error?.original);
+        });
+    });
+    return usr;
   }
 
-  async getUser(id: string): Promise<User> {
-    return await UserRepo.byID(id)
+  async addUserToOrganization(user: UserDTO) {
+    return await userRepo.create(user);
   }
 
-  async login(login: LoginDTO): Promise<string> {
-    const user = await UserRepo.byQuery({ email_address: login.email_address }, false)
-
-    const isCorrectPassword = await Passwords.validate(
-      login.password,
-      user.password,
-    )
-
-    if (!isCorrectPassword) {
-      throw new UnAuthorisedError('Incorrecr email address or password.')
+  async getUser(id: string) {
+    try {
+      return (await userRepo.findById(id)).toJSON();
+    } catch (error) {
+      throw new Error(error?.original);
     }
+  }
 
-    return seal(user, process.env.SECRET_KEY, '2h')
+  async login(login: LoginDTO) {
+    try {
+      const user = await userRepo.findOne(login.emailAddress);
+
+      const isCorrectPassword = await Passwords.validate(
+        login.password,
+        // @ts-ignore
+        user.toJSON()?.password
+      );
+
+      if (!isCorrectPassword) {
+        throw new UnAuthorisedError("Incorrecr email address or password.");
+      }
+      return seal(user, process.env.SECRET_KEY, "24h");
+    } catch (error) {
+      throw new Error(error?.original);
+    }
   }
 }
 
-export const Users = new UserService()
+export const Users = new UserService();
