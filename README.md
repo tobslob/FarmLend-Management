@@ -1,5 +1,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+![DB MODEL](https://github.com/tobslob/FarmLend-Management/blob/master/database-model.png?raw=true)
+
 ## Installation
 #### Step 1: Clone the repository
 
