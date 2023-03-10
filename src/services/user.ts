@@ -39,7 +39,6 @@ class UserService {
         })
         .then(t.commit.bind(t))
         .catch(error => {
-          // console.log("ERRR", error)
           t.rollback.bind(t);
           throw new Error(error?.original);
         });

@@ -12,7 +12,12 @@ export class User extends BaseModel {
   lastName: string;
 
   @Index
-  @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { notEmpty: true, isEmail: true } })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    unique: true,
+    validate: { notEmpty: true, isEmail: true }
+  })
   emailAddress: string;
 
   @Index
@@ -20,7 +25,11 @@ export class User extends BaseModel {
   @Column({ type: DataType.STRING, allowNull: true, validate: { notEmpty: true } })
   organizationId: string;
 
-  @Column({ type: DataType.STRING, allowNull: false, validate: { notEmpty: true, isAlphanumeric: true } })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: { notEmpty: true, isAlphanumeric: true }
+  })
   password: string;
 
   @BeforeCreate

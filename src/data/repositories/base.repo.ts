@@ -5,7 +5,7 @@ export interface IBaseRepository {
   findOne(attributes?: any): Promise<any>;
   findById(id: string, attributes?: any): Promise<any>;
   create(data: any, transaction?: any): Promise<any>;
-  updateRows(id: string, data: any): Promise<any>;
+  updateRows(id: string, data: any, attributes: any): Promise<any>;
   deleteRow(id: string): Promise<number>;
 }
 
@@ -20,10 +20,10 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     });
   }
 
-  async findById(id: string, attributes?: any) {
+  async findById(id: string, t?: any) {
     // @ts-ignore
     return await this.model.findByPk(id, {
-      attributes
+      transaction: t
     });
   }
 
@@ -32,12 +32,12 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     return this.model.create(data, { transaction: t });
   }
 
-  async updateRows(id: string, data: any): Promise<T> {
+  async updateRows(id: string, data: any, attributes?: any): Promise<T> {
     const resource = await this.findById(id);
 
     if (resource) {
       // @ts-ignore
-      return await resource.update(data);
+      return await resource.update(data, { attributes });
     }
   }
 

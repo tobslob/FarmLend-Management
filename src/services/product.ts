@@ -8,8 +8,8 @@ class ProductService {
     return await productRepo.create(product);
   }
 
-  async getProductById(id: string) {
-    return (await productRepo.findById(id))?.toJSON();
+  async getProductById(id: string, attributes?: any) {
+    return (await productRepo.findById(id, attributes))?.toJSON();
   }
 
   async getProducts(query: QueryDTO) {

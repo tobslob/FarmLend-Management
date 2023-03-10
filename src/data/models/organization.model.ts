@@ -10,7 +10,12 @@ export class Organization extends BaseModel {
   name: string;
 
   @Index
-  @Column({ type: DataType.ENUM, values: ['buyer', 'seller'], allowNull: false, validate: { notEmpty: true } })
+  @Column({
+    type: DataType.ENUM,
+    values: ["buyer", "seller"],
+    allowNull: false,
+    validate: { notEmpty: true }
+  })
   type: OrganizationType;
 }
 

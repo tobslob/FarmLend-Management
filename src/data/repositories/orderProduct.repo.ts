@@ -3,4 +3,4 @@ import { BaseRepository } from "./base.repo";
 
 class OrderProductRepository extends BaseRepository<OrderProduct> {}
 
-export const OrderProductRepo = new OrderProductRepository(OrderProduct);
+export const orderProductRepo = new OrderProductRepository(OrderProduct);
