@@ -3,43 +3,23 @@ import { orgRepo } from "@app/data/repositories/organization.repo";
 
 class OrganizationService {
   async createOrganization(org: OrganizationDTO, t?: any) {
-    try {
-      return (await orgRepo.create({ ...org }, t))?.toJSON();
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return (await orgRepo.create({ ...org }, t))?.toJSON();
   }
 
   async getOrganizationById(id: string) {
-    try {
-      return (await orgRepo.findById(id))?.toJSON();
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return (await orgRepo.findById(id))?.toJSON();
   }
 
   async getOrganizations(query: QueryDTO) {
-    try {
-      return await orgRepo.all(query);
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return await orgRepo.all({ where: { ...query } });
   }
 
   async deleteOrganization(id: string) {
-    try {
-      return await orgRepo.deleteRow(id);
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return await orgRepo.deleteRow(id);
   }
 
   async updateOrganization(id: string, org: OrganizationDTO) {
-    try {
-      return await orgRepo.updateRows(id, org);
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return await orgRepo.updateRows(id, org);
   }
 }
 
