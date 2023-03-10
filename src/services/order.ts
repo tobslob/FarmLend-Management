@@ -11,7 +11,7 @@ class OrderService {
     let createdOrder;
     let orderProduct: OrderProduct[] = [];
 
-    await db.sequelize.transaction().then(async t => {
+    await db.sequelize.transaction(async t => {
       createdOrder = (await orderRepo.create(order, { ...t })).toJSON();
 
       for (const product of order.products) {
@@ -48,7 +48,8 @@ class OrderService {
   }
 
   async getOrderById(id: string, t?: any) {
-    return (await orderRepo.findById(id, t))?.toJSON();
+    const order =  await orderRepo.findById(id, t);
+    return order
   }
 
   async getOrders(query: QueryDTO) {
