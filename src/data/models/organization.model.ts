@@ -1,4 +1,4 @@
-import { Column, DataType, Index, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Index, Table } from "sequelize-typescript";
 import { BaseModel } from "./base.model";
 import { Order } from "./order.model";
 import { Product } from "./product.model";
@@ -17,6 +17,12 @@ export class Organization extends BaseModel {
     validate: { notEmpty: true }
   })
   type: OrganizationType;
+
+  @HasMany(() => Product, "organizationId")
+  product: Product[];
+
+  @HasMany(() => Order, "organizationId")
+  order: Order[];
 }
 
 export enum OrganizationType {

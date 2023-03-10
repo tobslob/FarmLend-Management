@@ -13,7 +13,7 @@ class ProductService {
   }
 
   async getProducts(query: QueryDTO) {
-    return await productRepo.all(query);
+    return await productRepo.all({ where: { ...query } });
   }
 
   async deleteProduct(id: string) {

@@ -47,13 +47,26 @@ class OrderService {
     return { ...createdOrder, orderProduct };
   }
 
-  async getOrderById(id: string, t?: any) {
-    const order =  await orderRepo.findById(id, t);
-    return order
+  async getOrderById(id: string) {
+    const order = await orderRepo.findById(id, {
+      // attributes: ["id", "type", "organizationId"],
+      where: {
+        orderId: id
+      },
+      include: {
+        model: OrderProduct
+      }
+    });
+    return order;
   }
 
   async getOrders(query: QueryDTO) {
-    return await orderRepo.all(query);
+    return await orderRepo.all({
+      where: { ...query },
+      include: {
+        model: OrderProduct
+      }
+    });
   }
 
   async deleteOrder(id: string) {

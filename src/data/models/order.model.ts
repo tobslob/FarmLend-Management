@@ -1,4 +1,12 @@
-import { BelongsToMany, Column, DataType, ForeignKey, Index, Table } from "sequelize-typescript";
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Index,
+  Table
+} from "sequelize-typescript";
 import { BaseModel } from "./base.model";
 import { OrderProduct } from "./orderProduct.model";
 import { Organization } from "./organization.model";
@@ -7,7 +15,10 @@ import { Product } from "./product.model";
 @Table({ tableName: "order" })
 export class Order extends BaseModel {
   @BelongsToMany(() => Product, () => OrderProduct)
-  products: Product[];
+  product: Product[];
+
+  @HasMany(() => OrderProduct, "orderId")
+  order_product: OrderProduct[];
 
   @Index
   @Column({

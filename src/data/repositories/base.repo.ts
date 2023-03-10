@@ -15,16 +15,12 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
 
   async all(attributes?: any): Promise<T | T[]> {
     // @ts-ignore
-    return this.model.findAll({
-      where: { ...attributes }
-    });
+    return this.model.findAll(attributes);
   }
 
-  async findById(id: string, t?: any) {
+  async findById(id: string, attributes?: any) {
     // @ts-ignore
-    return await this.model.findByPk(id, {
-      transaction: t
-    });
+    return await this.model.findByPk(id, attributes);
   }
 
   async create(data: any, t?: any): Promise<T> {
