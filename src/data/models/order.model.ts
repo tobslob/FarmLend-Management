@@ -10,10 +10,15 @@ export class Order extends BaseModel {
   products: Product[];
 
   @Index
-  @Column({ type: DataType.ENUM, values: ['buy', 'sell'], allowNull: false, validate: { notEmpty: true } })
+  @Column({
+    type: DataType.ENUM,
+    values: ["buy", "sell"],
+    allowNull: false,
+    validate: { notEmpty: true }
+  })
   type: OrderType;
 
-  @Column({ type: DataType.STRING, allowNull: true })
+  @Column({ type: DataType.UUID, allowNull: true })
   references: string;
 
   @Index
@@ -27,10 +32,15 @@ export enum OrderType {
   SELL = "sell"
 }
 
+interface ProductDetails {
+  productId: string;
+  volume: number;
+}
+
 export interface OrderDTO {
   type: OrderType;
   references: string;
-  products: Product[];
+  products: ProductDetails[];
 }
 
 export interface QueryDTO {
