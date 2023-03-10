@@ -1,4 +1,4 @@
-import { BelongsToMany, Column, ForeignKey, Index, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, ForeignKey, Index, Table } from "sequelize-typescript";
 import { BaseModel } from "./base.model";
 import { OrderProduct } from "./orderProduct.model";
 import { Organization } from "./organization.model";
@@ -10,15 +10,15 @@ export class Order extends BaseModel {
   products: Product[];
 
   @Index
-  @Column({ allowNull: false, validate: { notEmpty: true } })
+  @Column({ type: DataType.ENUM, values: ['buy', 'sell'], allowNull: false, validate: { notEmpty: true } })
   type: OrderType;
 
-  @Column({ allowNull: true })
+  @Column({ type: DataType.STRING, allowNull: true })
   references: string;
 
   @Index
   @ForeignKey(() => Organization)
-  @Column({ allowNull: false, validate: { notEmpty: true } })
+  @Column({ type: DataType.UUID, allowNull: false, validate: { notEmpty: true } })
   organizationId: string;
 }
 

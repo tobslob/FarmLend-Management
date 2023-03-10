@@ -5,7 +5,7 @@ import { Request } from "express";
 class ProductService {
   async createProduct(product: ProductDTO, req: Request) {
     product["organizationId"] = req["user"].organizationId;
-    return await productRepo.create({ ...product });
+    return await productRepo.create(product);
   }
 
   async getProductById(id: string) {
