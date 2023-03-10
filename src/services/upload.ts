@@ -1,9 +1,9 @@
-import Datauri from 'datauri/parser'
-import { uploader } from '@app/common/services/cloudinary'
-import { Request, Response } from 'express';
+import Datauri from "datauri/parser";
+import { uploader } from "@app/common/services/cloudinary";
+import { Request, Response } from "express";
 import path from "path";
 import { generate } from "shortid";
-import { ConstraintError } from '@app/data/util';
+import { ConstraintError } from "@app/data/util";
 
 const parser = new Datauri();
 
@@ -12,16 +12,16 @@ const parser = new Datauri();
  * @param {Object} rawFile - the raw file
  * @returns {Object} - return the content of the raw file
  */
-const extractSingleFile = (file) => {
-  return parser.format(path.extname(file.originalname).toString(), file.buffer).content
-}
+const extractSingleFile = file => {
+  return parser.format(path.extname(file.originalname).toString(), file.buffer).content;
+};
 
 /**
  * extract the content of the supplied raw files
  * @param {Object} rawFiles - the list of the raw files
  * @returns {Object} - return the list of the content of the raw files
  */
-const extractFiles = (files) => files.map((file) => extractSingleFile(file))
+const extractFiles = files => files.map(file => extractSingleFile(file));
 
 /**
  * a function that is used to upload the supplied image to the cloud
@@ -33,20 +33,20 @@ const uploadSingleFile = async (file, index) => {
   const { secure_url } = await uploader.upload(file, {
     public_id: `${generate()}-${index}`,
     overwrite: true,
-    folder: 'qx-items',
+    folder: "qx-items",
     transformation: [
       {
         width: 500,
         height: 250,
-        crop: 'scale',
-        quality: 'auto',
-      },
+        crop: "scale",
+        quality: "auto"
+      }
     ],
-    allowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
-  })
+    allowedFormats: ["jpg", "jpeg", "png", "gif", "svg"]
+  });
 
-  return secure_url
-}
+  return secure_url;
+};
 
 /**
  * a middleware to upload image
@@ -58,14 +58,12 @@ const uploadImage = async (req: Request, _res: Response) => {
     if (!req.files) {
       throw new ConstraintError("Atleast one book cover should be uploaded.");
     }
-    const files = extractFiles(req.files)
-    const imageUrls = await Promise.all(
-      files.map((file, index) => uploadSingleFile(file, index)),
-    )
+    const files = extractFiles(req.files);
+    const imageUrls = await Promise.all(files.map((file, index) => uploadSingleFile(file, index)));
     req["imageUrls"] = imageUrls;
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
-}
+};
 
-export default uploadImage
+export default uploadImage;

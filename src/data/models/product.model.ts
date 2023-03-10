@@ -7,7 +7,7 @@ import { Organization } from "./organization.model";
 @Table({ tableName: "product" })
 export class Product extends BaseModel {
   @BelongsToMany(() => Order, () => OrderProduct)
-  orders: Order[]
+  orders: Order[];
 
   @Index
   @Column({ allowNull: false, validate: { notEmpty: true } })
@@ -23,11 +23,11 @@ export class Product extends BaseModel {
   @ForeignKey(() => Organization)
   organizationId: string;
 
-  @Column({ allowNull: true})
-  volume: string
+  @Column({ allowNull: true })
+  volume: string;
 
-  @Column({ allowNull: true})
-  pricePerUnit: string
+  @Column({ allowNull: true })
+  pricePerUnit: string;
 }
 
 export interface ProductDTO {

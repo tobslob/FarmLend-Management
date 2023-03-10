@@ -1,7 +1,7 @@
 import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 import { Order, Organization, Product, User } from "../models";
 import dotenv from "dotenv";
-import {OrderProduct} from "../models/orderProduct.model";
+import { OrderProduct } from "../models/orderProduct.model";
 
 dotenv.config();
 

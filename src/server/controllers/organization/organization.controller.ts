@@ -41,7 +41,7 @@ export class OrganizationController extends BaseController<controllerResponse> {
   async getOrganizations(
     @request() req: Request,
     @response() res: Response,
-    @queryParam() query: QueryDTO,
+    @queryParam() query: QueryDTO
   ) {
     try {
       const Orgs = await Organizations.getOrganizations(query);

@@ -7,7 +7,7 @@ import { Product } from "./product.model";
 @Table({ tableName: "order" })
 export class Order extends BaseModel {
   @BelongsToMany(() => Product, () => OrderProduct)
-  products: Product[]
+  products: Product[];
 
   @Index
   @Column({ allowNull: false, validate: { notEmpty: true } })
@@ -29,7 +29,7 @@ export enum OrderType {
 
 export interface OrderDTO {
   type: OrderType;
-  references: string,
+  references: string;
   products: Product[];
 }
 

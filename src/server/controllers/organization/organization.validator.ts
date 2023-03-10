@@ -12,5 +12,5 @@ export const isOrganization = Joi.object({
 
 export const isOrganizationUpdate = Joi.object({
   name: JoiValidator.validateString(),
-  type: JoiValidator.validateString().valid(values(OrganizationType)),
-})
+  type: JoiValidator.validateString().valid(values(OrganizationType))
+});

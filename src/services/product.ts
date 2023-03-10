@@ -4,7 +4,7 @@ import { Request } from "express";
 
 class ProductService {
   async createProduct(product: ProductDTO, req: Request) {
-    product["organizationId"] = req["user"].organizationId
+    product["organizationId"] = req["user"].organizationId;
     return await productRepo.create({ ...product });
   }
 

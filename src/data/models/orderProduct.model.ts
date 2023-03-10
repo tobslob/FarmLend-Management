@@ -10,6 +10,7 @@ export class OrderProduct extends BaseModel {
   @Column({ allowNull: false, validate: { notEmpty: true } })
   orderId: string;
 
+  @Index
   @ForeignKey(() => Product)
   @Column({ allowNull: false, validate: { notEmpty: true } })
   productId: string;

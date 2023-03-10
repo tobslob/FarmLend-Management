@@ -4,13 +4,10 @@ import { Request } from "express";
 
 class OrderService {
   async createOrder(order: OrderDTO, req: Request) {
-    order["organizationId"] = req["user"].organizationId
+    order["organizationId"] = req["user"].organizationId;
 
-    return await OrderRepo.create(order)
+    return await OrderRepo.create(order);
   }
-
-
-
 
   async getOrderById(id: string) {
     return (await OrderRepo.findById(id))?.toJSON();

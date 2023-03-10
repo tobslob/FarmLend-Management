@@ -14,10 +14,10 @@ export class Organization extends BaseModel {
   type: OrganizationType;
 
   @HasMany(() => Product, "id")
-  products: Product[]
+  products: Product[];
 
   @HasMany(() => Order, "id")
-  orders: Order[]
+  orders: Order[];
 }
 
 export enum OrganizationType {

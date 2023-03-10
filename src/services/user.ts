@@ -49,9 +49,9 @@ class UserService {
 
   async addUserToOrganization(user: UserDTO) {
     if (user.organizationId) {
-      const org = (await orgRepo.findById(user?.organizationId)).toJSON()
+      const org = (await orgRepo.findById(user?.organizationId)).toJSON();
       if (!org) {
-        throw new NotFoundError("Invalid organization id")
+        throw new NotFoundError("Invalid organization id");
       }
     }
     return await userRepo.create(user);

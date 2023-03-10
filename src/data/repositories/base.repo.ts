@@ -37,7 +37,7 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
 
     if (resource) {
       // @ts-ignore
-      return await resource.update(data)
+      return await resource.update(data);
     }
   }
 

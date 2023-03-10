@@ -18,7 +18,7 @@ export const isUser = Joi.object({
     is: null,
     then: JoiValidator.validateString().valid(values(OrganizationType)).required(),
     otherwise: JoiValidator.validateString().valid(values(OrganizationType))
-  }),
+  })
 });
 
 export const isLogin = Joi.object({

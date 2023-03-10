@@ -18,9 +18,9 @@ class OrganizationService {
     }
   }
 
-  async getOrganizations(query: QueryDTO,) {
+  async getOrganizations(query: QueryDTO) {
     try {
-      return (await orgRepo.all(query));
+      return await orgRepo.all(query);
     } catch (error) {
       throw new Error(error?.original);
     }
