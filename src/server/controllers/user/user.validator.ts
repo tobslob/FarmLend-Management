@@ -8,19 +8,17 @@ export const isUser = Joi.object({
   lastName: JoiValidator.validateString().required(),
   emailAddress: JoiValidator.validateEmail().required(),
   password: JoiValidator.validatePassword().required(),
-  organizationId: JoiValidator.validateID(),
-  organizationName: JoiValidator.validateString().when("organizationId", {
-    is: false,
-    then: Joi.required(),
-    otherwise: Joi.forbidden()
+  organizationId: JoiValidator.validateID().default(null),
+  organizationName: Joi.when("organizationId", {
+    is: null,
+    then: JoiValidator.validateString().required(),
+    otherwise: JoiValidator.validateString()
   }),
-  organizationType: JoiValidator.validateString()
-    .valid(values(OrganizationType))
-    .when("organizationId", {
-      is: false,
-      then: Joi.required(),
-      otherwise: Joi.forbidden()
-    })
+  organizationType: Joi.when("organizationId", {
+    is: null,
+    then: JoiValidator.validateString().valid(values(OrganizationType)).required(),
+    otherwise: JoiValidator.validateString().valid(values(OrganizationType))
+  }),
 });
 
 export const isLogin = Joi.object({
