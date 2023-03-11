@@ -1,10 +1,10 @@
-import { ProductDTO, QueryDTO } from "@app/data/models";
-import { productRepo } from "@app/data/repositories/product.repo";
-import { Request } from "express";
+import { ProductDTO, QueryDTO } from '@app/data/models';
+import { productRepo } from '@app/data/repositories/product.repo';
+import { Request } from 'express';
 
 class ProductService {
   async createProduct(product: ProductDTO, req: Request) {
-    product["organizationId"] = req["user"].organizationId;
+    product['organizationId'] = req['user'].organizationId;
     return await productRepo.create(product);
   }
 

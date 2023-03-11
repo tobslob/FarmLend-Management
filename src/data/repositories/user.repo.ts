@@ -1,5 +1,5 @@
-import { User } from "@app/data/models";
-import { BaseRepository } from "./base.repo";
+import { User } from '@app/data/models';
+import { BaseRepository } from './base.repo';
 
 class UserRepository extends BaseRepository<User> {}
 

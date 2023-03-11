@@ -1,19 +1,19 @@
-import db from "@app/data/database/connect";
-import { OrderDTO, OrderProduct, QueryDTO } from "@app/data/models";
-import { orderRepo } from "@app/data/repositories/order.repo";
-import { orderProductRepo } from "@app/data/repositories/orderProduct.repo";
-import { productRepo } from "@app/data/repositories/product.repo";
-import { Request } from "express";
-import { Transaction } from "sequelize/types";
+import db from '@app/data/database/connect';
+import { OrderDTO, OrderProduct, QueryDTO } from '@app/data/models';
+import { orderRepo } from '@app/data/repositories/order.repo';
+import { orderProductRepo } from '@app/data/repositories/orderProduct.repo';
+import { productRepo } from '@app/data/repositories/product.repo';
+import { Request } from 'express';
+import { Transaction } from 'sequelize/types';
 
 class OrderService {
   async createOrder(order: OrderDTO, req: Request) {
-    order["organizationId"] = req["user"].organizationId;
+    order['organizationId'] = req['user'].organizationId;
     let createdOrder;
     let volume: number;
     const orderProduct: OrderProduct[] = [];
 
-    await db.sequelize.transaction(async t => {
+    await db.sequelize.transaction(async (t) => {
       createdOrder = (await orderRepo.create(order, { ...t })).toJSON();
 
       for (const product of order.products) {
@@ -26,9 +26,9 @@ class OrderService {
             productId: getProduct?.id,
             volume: product.volume,
             // @ts-ignore
-            pricePerUnit: getProduct?.pricePerUnit
+            pricePerUnit: getProduct?.pricePerUnit,
           },
-          t
+          t,
         );
 
         orderProduct.push(orderProd);
@@ -44,9 +44,9 @@ class OrderService {
         await productRepo.upsert(
           product.productId,
           {
-            volume
+            volume,
           },
-          { transaction: t }
+          { transaction: t },
         );
       }
     });
@@ -58,12 +58,12 @@ class OrderService {
     const order = await orderRepo.findById(id, {
       // attributes: ["id", "type", "organizationId"],
       where: {
-        orderId: id
+        orderId: id,
       },
       include: {
-        model: OrderProduct
+        model: OrderProduct,
       },
-      transaction: t
+      transaction: t,
     });
     return order;
   }
@@ -72,9 +72,9 @@ class OrderService {
     return await orderRepo.all({
       where: { ...query },
       include: {
-        model: OrderProduct
+        model: OrderProduct,
       },
-      transaction: t
+      transaction: t,
     });
   }
 
@@ -85,16 +85,16 @@ class OrderService {
   async updateOrder(id: string, order: OrderDTO) {
     let updatedOrder;
     let volume: number;
-    await db.sequelize.transaction(async t => {
+    await db.sequelize.transaction(async (t) => {
       console.log(
-        "ONE",
+        'ONE',
         await orderRepo.upsert(
           id,
           {
-            type: order.type
+            type: order.type,
           },
-          t
-        )
+          t,
+        ),
       );
 
       for (const product of order.products) {
@@ -111,9 +111,9 @@ class OrderService {
         await productRepo.upsert(
           product.productId,
           {
-            volume
+            volume,
           },
-          t
+          t,
         );
       }
 

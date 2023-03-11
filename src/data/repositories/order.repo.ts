@@ -1,5 +1,5 @@
-import { Order } from "@app/data/models";
-import { BaseRepository } from "./base.repo";
+import { Order } from '@app/data/models';
+import { BaseRepository } from './base.repo';
 
 class OrderRepository extends BaseRepository<Order> {}
 

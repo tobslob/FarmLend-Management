@@ -1,9 +1,9 @@
-import Logger from "bunyan";
-import { Request, Response } from "express";
+import Logger from 'bunyan';
+import { Request, Response } from 'express';
 
 function removeSensitiveData(body: any, props: string[]) {
   const allKeys = Object.keys(body);
-  const permittedKeys = allKeys.filter(k => props.indexOf(k) === -1);
+  const permittedKeys = allKeys.filter((k) => props.indexOf(k) === -1);
 
   return permittedKeys.reduce((payload, k) => {
     payload[k] = body[k];
@@ -24,14 +24,14 @@ export function createRequestSerializer(...sensitiveProps: string[]): (req: Requ
       method: req.method,
       url: req.url,
       headers: req.headers,
-      origin_service: req.headers["x-origin-service"],
+      origin_service: req.headers['x-origin-service'],
       remoteAddress: req.connection.remoteAddress,
       remotePort: req.connection.remotePort,
       // @ts-ignore
       id: req.id,
       ...(req.body && Object.keys(req.body).length !== 0
         ? { body: removeSensitiveData(req.body, sensitiveProps) }
-        : undefined)
+        : undefined),
     };
   };
 }
@@ -47,7 +47,7 @@ export const resSerializer = (res: Response) => {
     // @ts-ignore
     headers: res._headers,
     // @ts-ignore
-    body: res.body
+    body: res.body,
   };
 };
 
@@ -64,12 +64,12 @@ export const errSerializer = (err: any) => {
     req,
     config,
     ...(response &&
-      typeof response === "object" && {
+      typeof response === 'object' && {
         response: {
           config: response.config,
           data: response.data,
-          status: response.status
-        }
-      })
+          status: response.status,
+        },
+      }),
   };
 };

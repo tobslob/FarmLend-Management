@@ -1,9 +1,9 @@
-import { Passwords } from "@app/services/password";
-import { BeforeCreate, Column, DataType, ForeignKey, Index, Table } from "sequelize-typescript";
-import { BaseModel } from "./base.model";
-import { Organization, OrganizationType } from "./organization.model";
+import { Passwords } from '@app/services/password';
+import { BeforeCreate, Column, DataType, ForeignKey, Index, Table } from 'sequelize-typescript';
+import { BaseModel } from './base.model';
+import { Organization, OrganizationType } from './organization.model';
 
-@Table({ tableName: "user" })
+@Table({ tableName: 'user' })
 export class User extends BaseModel {
   @Column({ type: DataType.STRING, allowNull: false, validate: { notEmpty: true } })
   firstName: string;
@@ -16,7 +16,7 @@ export class User extends BaseModel {
     type: DataType.STRING,
     allowNull: false,
     unique: true,
-    validate: { notEmpty: true, isEmail: true }
+    validate: { notEmpty: true, isEmail: true },
   })
   emailAddress: string;
 
@@ -28,7 +28,7 @@ export class User extends BaseModel {
   @Column({
     type: DataType.STRING,
     allowNull: false,
-    validate: { notEmpty: true, isAlphanumeric: true }
+    validate: { notEmpty: true, isAlphanumeric: true },
   })
   password: string;
 

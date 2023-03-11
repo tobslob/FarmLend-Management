@@ -1,9 +1,9 @@
-import { Query, ControllerError, ModelNotFoundError, DuplicateModelError } from "@app/data/util";
-import { Request, Response } from "express";
-import { injectable } from "inversify";
-import _ from "lodash";
-import { NOT_FOUND, BAD_REQUEST, CONFLICT } from "http-status-codes";
-import { Log } from "@app/common/services/log";
+import { Query, ControllerError, ModelNotFoundError, DuplicateModelError } from '@app/data/util';
+import { Request, Response } from 'express';
+import { injectable } from 'inversify';
+import _ from 'lodash';
+import { NOT_FOUND, BAD_REQUEST, CONFLICT } from 'http-status-codes';
+import { Log } from '@app/common/services/log';
 
 @injectable()
 export class Controller<T> {
@@ -17,8 +17,8 @@ export class Controller<T> {
    */
   async handleSuccess(req: Request, res: Response, result: T) {
     res.json({
-      status: "success",
-      data: result
+      status: 'success',
+      data: result,
     });
     Log.info({ req, res });
   }
@@ -63,12 +63,12 @@ export class Controller<T> {
     res.status(this.getHTTPErrorCode(err) ?? code).json({
       code: this.getHTTPErrorCode(err) ?? code,
       data: null,
-      message: errorMessage
+      message: errorMessage,
     });
     Log.error(req, res, err);
   }
 }
 
-export type PaginationOptions = Pick<Query, Exclude<keyof Query, "conditions" | "archived">>;
+export type PaginationOptions = Pick<Query, Exclude<keyof Query, 'conditions' | 'archived'>>;
 
 export class BaseController<T> extends Controller<T> {}

@@ -1,4 +1,4 @@
-import { Model } from "sequelize-typescript";
+import { Model } from 'sequelize-typescript';
 
 export interface IBaseRepository {
   all(attributes?: any): Promise<any | any[]>;
@@ -7,6 +7,7 @@ export interface IBaseRepository {
   create(data: any, transaction?: any): Promise<any>;
   upsert(id: string, data: any, attributes: any): Promise<any>;
   deleteRow(id: string): Promise<number>;
+  truncate(attributes: any): Promise<any>;
 }
 
 // @TODO: Remove //@ts-ignore, make Model compile with types
@@ -44,5 +45,12 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
   async findOne([T]: any) {
     // @ts-ignore
     return await this.model.findOne({ T });
+  }
+
+  async truncate(attributes?: any) {
+    return await this.model.destroy({
+      where: {...attributes},
+      force: true,
+    });
   }
 }

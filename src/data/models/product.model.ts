@@ -1,10 +1,10 @@
-import { BelongsToMany, DataType, Column, ForeignKey, Index, Table } from "sequelize-typescript";
-import { BaseModel } from "./base.model";
-import { Order } from "./order.model";
-import { OrderProduct } from "./orderProduct.model";
-import { Organization } from "./organization.model";
+import { BelongsToMany, DataType, Column, ForeignKey, Index, Table } from 'sequelize-typescript';
+import { BaseModel } from './base.model';
+import { Order } from './order.model';
+import { OrderProduct } from './orderProduct.model';
+import { Organization } from './organization.model';
 
-@Table({ tableName: "product" })
+@Table({ tableName: 'product' })
 export class Product extends BaseModel {
   @BelongsToMany(() => Order, () => OrderProduct)
   orders: Order[];

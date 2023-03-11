@@ -1,5 +1,5 @@
-import { Organization } from "@app/data/models";
-import { BaseRepository } from "./base.repo";
+import { Organization } from '@app/data/models';
+import { BaseRepository } from './base.repo';
 
 class UserRepo extends BaseRepository<Organization> {}
 

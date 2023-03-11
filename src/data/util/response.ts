@@ -13,5 +13,5 @@ export const responseHandler = (res, code, statusMessage, data) =>
   res.status(code).json({
     data,
     code,
-    message: statusMessage
+    message: statusMessage,
   });

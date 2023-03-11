@@ -1,8 +1,8 @@
-import HttpStatus from "http-status-codes";
-import { Request, Response, ErrorRequestHandler, NextFunction } from "express";
-import { Log } from "@app/common/services/log";
-import Logger from "bunyan";
-import { responseHandler } from "./response";
+import HttpStatus from 'http-status-codes';
+import { Request, Response, ErrorRequestHandler, NextFunction } from 'express';
+import { Log } from '@app/common/services/log';
+import Logger from 'bunyan';
+import { responseHandler } from './response';
 
 /**
  * Base error type for errors that the server can respond
@@ -106,7 +106,7 @@ export class UnAuthorisedError extends ControllerError {
 
 export class InvalidSessionError extends Error {
   constructor(readonly originalError: Error) {
-    super("Your session is invalid");
+    super('Your session is invalid');
   }
 }
 
@@ -139,12 +139,12 @@ export function universalErrorHandler(logger: Logger): ErrorRequestHandler {
       return responseHandler(
         res,
         HttpStatus.INTERNAL_SERVER_ERROR,
-        "We are having internal issues. Please bear with us",
-        null
+        'We are having internal issues. Please bear with us',
+        null,
       );
     }
 
-    responseHandler(res, err.code, err.message, err["data"]);
+    responseHandler(res, err.code, err.message, err['data']);
     logger.error({ err, res, req });
   };
 }
@@ -152,6 +152,6 @@ export function universalErrorHandler(logger: Logger): ErrorRequestHandler {
 export const handleError = (req: Request, res: Response, error: any, code: number) => {
   res.status(code).json({
     code,
-    error
+    error,
   });
 };

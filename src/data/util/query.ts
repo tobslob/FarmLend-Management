@@ -1,4 +1,4 @@
-import { each } from "lodash";
+import { each } from 'lodash';
 
 /**
  * Result gotten from a pagination query
@@ -109,14 +109,14 @@ export function fromQueryMap(query: any, queryMap: object) {
     }
   });
 
-  if (queryMap["$always"]) {
-    Object.assign(mongoQuery, queryMap["$always"]);
+  if (queryMap['$always']) {
+    Object.assign(mongoQuery, queryMap['$always']);
   }
 
   if ($orQueries.length === 1) {
-    mongoQuery["$or"] = $orQueries[0];
+    mongoQuery['$or'] = $orQueries[0];
   } else if ($orQueries.length > 1) {
-    mongoQuery["$and"] = $orQueries.map(query => ({ $or: query }));
+    mongoQuery['$and'] = $orQueries.map((query) => ({ $or: query }));
   }
 
   return mongoQuery;
@@ -132,8 +132,8 @@ export function orFromQueryMap(query: any, queryMap: object) {
     }
   });
 
-  if (queryMap["$always"]) {
-    Object.assign(mongoQuery, queryMap["$always"]);
+  if (queryMap['$always']) {
+    Object.assign(mongoQuery, queryMap['$always']);
   }
 
   return mongoQuery;

@@ -1,5 +1,5 @@
-import { OrganizationDTO, QueryDTO } from "@app/data/models";
-import { orgRepo } from "@app/data/repositories/organization.repo";
+import { OrganizationDTO, QueryDTO } from '@app/data/models';
+import { orgRepo } from '@app/data/repositories/organization.repo';
 
 class OrganizationService {
   async createOrganization(org: OrganizationDTO, t?: any) {

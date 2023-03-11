@@ -1,6 +1,6 @@
-import { Auth } from "@app/data/models";
+import { Auth } from '@app/data/models';
 
-declare module "express" {
+declare module 'express' {
   export interface Request {
     user: Auth;
     file: any;
@@ -8,6 +8,6 @@ declare module "express" {
   }
 }
 
-declare module "cloudinary" {
+declare module 'cloudinary' {
   export function config(conf: ConfigOptions);
 }

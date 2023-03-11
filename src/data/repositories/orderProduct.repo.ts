@@ -1,5 +1,5 @@
-import { OrderProduct } from "../models/orderProduct.model";
-import { BaseRepository } from "./base.repo";
+import { OrderProduct } from '../models/orderProduct.model';
+import { BaseRepository } from './base.repo';
 
 class OrderProductRepository extends BaseRepository<OrderProduct> {}
 
