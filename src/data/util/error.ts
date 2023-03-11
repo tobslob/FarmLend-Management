@@ -149,9 +149,3 @@ export function universalErrorHandler(logger: Logger): ErrorRequestHandler {
   };
 }
 
-export const handleError = (req: Request, res: Response, error: any, code: number) => {
-  res.status(code).json({
-    code,
-    error,
-  });
-};

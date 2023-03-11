@@ -3,6 +3,7 @@ import { OrderDTO, OrderProduct, QueryDTO } from '@app/data/models';
 import { orderRepo } from '@app/data/repositories/order.repo';
 import { orderProductRepo } from '@app/data/repositories/orderProduct.repo';
 import { productRepo } from '@app/data/repositories/product.repo';
+import { NotFoundError } from '@app/data/util';
 import { Request } from 'express';
 import { Transaction } from 'sequelize/types';
 
@@ -17,7 +18,11 @@ class OrderService {
       createdOrder = (await orderRepo.create(order, { ...t })).toJSON();
 
       for (const product of order.products) {
-        const getProduct = (await productRepo.findById(product.productId, t)).toJSON();
+        const getProduct = (await productRepo.findById(product.productId, t))?.toJSON();
+
+        if (!getProduct) {
+          throw new NotFoundError(`product with ID: ${product.productId} is not found`)
+        }
 
         const orderProd = await orderProductRepo.create(
           {
