@@ -39,9 +39,9 @@ class OrderService {
         orderProduct.push(orderProd);
 
         // @ts-ignore
-        if (prod?.volume >= product.volume) {
+        if (getProduct?.volume >= product.volume) {
           // @ts-ignore
-          volume = prod?.volume - product.volume;
+          volume = getProduct?.volume - product.volume;
         } else {
           throw new Error(`product with ID: ${product.productId} is sold out`);
         }
