@@ -11,8 +11,6 @@ import { orgRepo } from "@app/data/repositories/organization.repo";
 config();
 
 class UserService {
-  constructor() {}
-
   async createUser(user: UserDTO) {
     let usr: User;
     await db.sequelize.transaction().then(async t => {

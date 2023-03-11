@@ -14,9 +14,7 @@ export const sequelizeOptions: SequelizeOptions = {
   repositoryMode: true
 };
 
-const sequelize = new Sequelize(
-  "postgres://rdbmjmnl:F-rKoR66R4cZpks3V43BK5X3zxg-HEBJ@isilo.db.elephantsql.com/rdbmjmnl"
-);
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 // Register our models with sequelize
 sequelize.addModels([User, Product, Order, Organization, OrderProduct]);

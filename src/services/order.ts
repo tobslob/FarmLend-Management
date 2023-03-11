@@ -11,7 +11,7 @@ class OrderService {
     order["organizationId"] = req["user"].organizationId;
     let createdOrder;
     let volume: number;
-    let orderProduct: OrderProduct[] = [];
+    const orderProduct: OrderProduct[] = [];
 
     await db.sequelize.transaction(async t => {
       createdOrder = (await orderRepo.create(order, { ...t })).toJSON();

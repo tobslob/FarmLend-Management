@@ -72,7 +72,7 @@ export class App {
   getServer = () => this.server;
 
   async connectDB() {
-    await Store.connect();
+    // await Store.connect();
     await db.sequelize.authenticate();
   }
 
