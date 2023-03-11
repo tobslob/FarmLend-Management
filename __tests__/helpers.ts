@@ -71,9 +71,10 @@ export async function repeat(n: number, fn: () => Promise<any>): Promise<any[]> 
 export function createSession(id: string, extras = {}): Session {
   return {
     id,
-    email_address: faker.internet.email(),
-    first_name: faker.name.firstName(),
-    last_name: faker.name.lastName(),
+    emailAddress: faker.internet.email(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    
     ...extras
   };
 }
@@ -83,6 +84,6 @@ export function createSession(id: string, extras = {}): Session {
  * @param session session used to derive a token
  */
 export async function createJsonWebToken(session?: Session) {
-  const token = await seal(session, process.env.SECRET_KEY, "1h");
+  const token = await seal(session, process.env.SECRET_KEY!, "1h");
   return `Bearer ${token}`;
 }
