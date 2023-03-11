@@ -27,7 +27,7 @@ export class FakeData {
     createOrganization() {
         return {
             name: this.randomString,
-            type: this.randomOrganizationType
+            type: OrganizationType.SELLER
         }
     }
 

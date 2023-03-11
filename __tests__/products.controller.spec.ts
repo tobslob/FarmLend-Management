@@ -4,9 +4,11 @@ import sinon from 'sinon';
 import supertest, { SuperTest, Test } from 'supertest';
 import { App } from '../src/server/app';
 import { productRepo } from "../src/data/repositories/product.repo";
+import { userRepo } from '../src/data/repositories/user.repo';
 import { StatusCodes } from 'http-status-codes';
 import { FakeData } from './mocks/data';
 import { createSession, createJsonWebToken, repeat } from './helpers';
+import { orgRepo } from '../src/data/repositories/organization.repo';
 
 let app: App
 let request: SuperTest<Test>
@@ -29,6 +31,8 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
+  await userRepo.truncate()
+  await orgRepo.truncate()
   await app.closeDB()
 })
 

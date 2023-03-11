@@ -9,6 +9,7 @@ import { FakeData } from './mocks/data';
 import { createSession, createJsonWebToken, repeat } from './helpers';
 import { productRepo } from '../src/data/repositories/product.repo';
 import { OrderType } from '../src/data/models/order.model';
+import { userRepo } from '../src/data/repositories/user.repo';
 
 let app: App
 let request: SuperTest<Test>
@@ -31,6 +32,8 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
+  await userRepo.truncate()
+  await productRepo.truncate()
   await app.closeDB()
 })
 
