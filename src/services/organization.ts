@@ -1,5 +1,6 @@
 import { OrganizationDTO, QueryDTO } from '@app/data/models';
 import { orgRepo } from '@app/data/repositories/organization.repo';
+import { Request } from 'express';
 
 class OrganizationService {
   async createOrganization(org: OrganizationDTO, t?: any) {
@@ -14,8 +15,8 @@ class OrganizationService {
     return await orgRepo.all({ where: { ...query } });
   }
 
-  async deleteOrganization(id: string) {
-    return await orgRepo.deleteRow(id);
+  async deleteOrganization(id: string, req: Request) {
+    return await orgRepo.deleteRow(id, req['user'].organizationId);
   }
 
   async updateOrganization(id: string, org: OrganizationDTO) {

@@ -33,6 +33,4 @@ export enum OrganizationType {
 export interface OrganizationDTO {
   name?: string;
   type?: OrganizationType;
-  products?: Product[];
-  orders?: Order[];
 }

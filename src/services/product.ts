@@ -16,8 +16,8 @@ class ProductService {
     return await productRepo.all({ where: { ...query } });
   }
 
-  async deleteProduct(id: string) {
-    return await productRepo.deleteRow(id);
+  async deleteProduct(id: string, req: Request) {
+    return await productRepo.deleteRow(id, req['user'].organizationId);
   }
 
   async updateProduct(id: string, product: ProductDTO) {

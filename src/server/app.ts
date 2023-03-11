@@ -77,9 +77,10 @@ export class App {
   }
 
   /**
-   * Closes MongoDB and Redis connection
+   * Closes DB and Redis connection
    */
   async closeDB() {
+    await db.sequelize.close();
     await Store.quit();
   }
 }

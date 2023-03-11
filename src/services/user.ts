@@ -41,7 +41,7 @@ class UserService {
           throw new Error(error?.original);
         });
     });
-    return usr;
+    return usr.toJSON();
   }
 
   async addUserToOrganization(user: UserDTO) {
@@ -55,30 +55,21 @@ class UserService {
   }
 
   async getUser(id: string) {
-    try {
-      return (await userRepo.findById(id)).toJSON();
-    } catch (error) {
-      throw new Error(error?.original);
-    }
+    return (await userRepo.findById(id)).toJSON();
   }
 
   async login(login: LoginDTO) {
-    try {
-      const user = await userRepo.findOne(login.emailAddress);
+    const user = await userRepo.findOne(login.emailAddress);
+    const isCorrectPassword = await Passwords.validate(
+      login.password,
+      // @ts-ignore
+      user.toJSON()?.password,
+    );
 
-      const isCorrectPassword = await Passwords.validate(
-        login.password,
-        // @ts-ignore
-        user.toJSON()?.password,
-      );
-
-      if (!isCorrectPassword) {
-        throw new UnAuthorisedError('Incorrecr email address or password.');
-      }
-      return seal(user, process.env.SECRET_KEY, '24h');
-    } catch (error) {
-      throw new Error(error?.original);
+    if (!isCorrectPassword) {
+      throw new UnAuthorisedError('Incorrecr email address or password.');
     }
+    return seal(user, process.env.SECRET_KEY, '24h');
   }
 }
 

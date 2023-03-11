@@ -1,8 +1,8 @@
-import { Query, ControllerError, ModelNotFoundError, DuplicateModelError } from '@app/data/util';
+import { ControllerError, ModelNotFoundError, DuplicateModelError } from '@app/data/util';
 import { Request, Response } from 'express';
 import { injectable } from 'inversify';
 import _ from 'lodash';
-import { NOT_FOUND, BAD_REQUEST, CONFLICT } from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 import { Log } from '@app/common/services/log';
 
 @injectable()
@@ -35,11 +35,11 @@ export class Controller<T> {
   getHTTPErrorCode(err) {
     // check if error code exists and is a valid HTTP code.
     if (err.code >= 100 && err.code < 600) {
-      if (err instanceof ModelNotFoundError) return NOT_FOUND;
-      if (err instanceof DuplicateModelError) return CONFLICT;
+      if (err instanceof ModelNotFoundError) return StatusCodes.NOT_FOUND;
+      if (err instanceof DuplicateModelError) return StatusCodes.CONFLICT;
       return err.code;
     }
-    return BAD_REQUEST;
+    return StatusCodes.BAD_REQUEST;
   }
 
   /**
@@ -49,7 +49,14 @@ export class Controller<T> {
    * @param error Error object
    * @param message Optional error message. Useful for hiding internal errors from clients.
    */
-  handleError(req: Request, res: Response, err: Error, message?: string) {
+  handleError(req: Request, res: Response, err: any, message?: string) {
+    if (err?.original) {
+      Log.error(req, res, err);
+      return res.status(400).json({
+        data: null,
+        message: err?.original,
+      });
+    }
     /**
      * Useful when we call an asynchrous function that might throw
      * after we've sent a response to client
@@ -68,7 +75,5 @@ export class Controller<T> {
     Log.error(req, res, err);
   }
 }
-
-export type PaginationOptions = Pick<Query, Exclude<keyof Query, 'conditions' | 'archived'>>;
 
 export class BaseController<T> extends Controller<T> {}

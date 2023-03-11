@@ -55,7 +55,7 @@ export class OrderController extends BaseController<controllerResponse> {
   @httpDelete('/:id', validate(isID))
   async deleteOrder(@request() req: Request, @response() res: Response, @requestParam('id') id: string) {
     try {
-      const resp = await Orders.deleteOrder(id);
+      const resp = await Orders.deleteOrder(id, req);
       this.handleSuccess(req, res, resp);
     } catch (error) {
       this.handleError(req, res, error);

@@ -148,4 +148,3 @@ export function universalErrorHandler(logger: Logger): ErrorRequestHandler {
     logger.error({ err, res, req });
   };
 }
-

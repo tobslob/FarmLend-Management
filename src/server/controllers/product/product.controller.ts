@@ -56,7 +56,7 @@ export class ProductController extends BaseController<controllerResponse> {
   @httpDelete('/:id', validate(isID))
   async deleteProduct(@request() req: Request, @response() res: Response, @requestParam('id') id: string) {
     try {
-      const resp = await products.deleteProduct(id);
+      const resp = await products.deleteProduct(id, req);
       this.handleSuccess(req, res, resp);
     } catch (error) {
       this.handleError(req, res, error);

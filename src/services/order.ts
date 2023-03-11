@@ -21,7 +21,7 @@ class OrderService {
         const getProduct = (await productRepo.findById(product.productId, t))?.toJSON();
 
         if (!getProduct) {
-          throw new NotFoundError(`product with ID: ${product.productId} is not found`)
+          throw new NotFoundError(`product with ID: ${product.productId} is not found`);
         }
 
         const orderProd = await orderProductRepo.create(
@@ -61,7 +61,6 @@ class OrderService {
 
   async getOrderById(id: string, t?: Transaction) {
     const order = await orderRepo.findById(id, {
-      // attributes: ["id", "type", "organizationId"],
       where: {
         orderId: id,
       },
@@ -83,23 +82,20 @@ class OrderService {
     });
   }
 
-  async deleteOrder(id: string) {
-    return await orderRepo.deleteRow(id);
+  async deleteOrder(id: string, req: Request) {
+    return await orderRepo.deleteRow(id, req['user'].organizationId);
   }
 
   async updateOrder(id: string, order: OrderDTO) {
     let updatedOrder;
     let volume: number;
     await db.sequelize.transaction(async (t) => {
-      console.log(
-        'ONE',
-        await orderRepo.upsert(
-          id,
-          {
-            type: order.type,
-          },
-          t,
-        ),
+      await orderRepo.upsert(
+        id,
+        {
+          type: order.type,
+        },
+        t,
       );
 
       for (const product of order.products) {

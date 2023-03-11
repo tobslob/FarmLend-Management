@@ -6,7 +6,7 @@ export interface IBaseRepository {
   findById(id: string, attributes?: any): Promise<any>;
   create(data: any, transaction?: any): Promise<any>;
   upsert(id: string, data: any, attributes: any): Promise<any>;
-  deleteRow(id: string): Promise<number>;
+  deleteRow(id: string, organizationId: string): Promise<number>;
   truncate(attributes: any): Promise<any>;
 }
 
@@ -38,8 +38,8 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     }
   }
 
-  async deleteRow(query: any): Promise<number> {
-    return await this.model.destroy({ where: { query } });
+  async deleteRow(id: string, organizationId: any): Promise<number> {
+    return await this.model.destroy({ where: { id, organizationId } });
   }
 
   async findOne([T]: any) {
@@ -49,7 +49,7 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
 
   async truncate(attributes?: any) {
     return await this.model.destroy({
-      where: {...attributes},
+      where: { ...attributes },
       force: true,
     });
   }
