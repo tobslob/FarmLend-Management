@@ -19,7 +19,7 @@ class OrganizationService {
   }
 
   async updateOrganization(id: string, org: OrganizationDTO) {
-    return await orgRepo.updateRows(id, org);
+    return await orgRepo.upsert(id, org);
   }
 }
 

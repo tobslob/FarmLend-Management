@@ -86,7 +86,7 @@ export class OrderController extends BaseController<controllerResponse> {
     @requestBody() body: OrderDTO
   ) {
     try {
-      const order = Orders.updateOrder(id, body);
+      const order = await Orders.updateOrder(id, body);
       this.handleSuccess(req, res, order);
     } catch (error) {
       this.handleError(req, res, error);

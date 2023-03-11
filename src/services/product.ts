@@ -21,7 +21,7 @@ class ProductService {
   }
 
   async updateProduct(id: string, product: ProductDTO) {
-    return await productRepo.updateRows(id, product);
+    return await productRepo.upsert(id, product);
   }
 }
 

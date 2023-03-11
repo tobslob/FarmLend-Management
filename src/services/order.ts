@@ -4,11 +4,13 @@ import { orderRepo } from "@app/data/repositories/order.repo";
 import { orderProductRepo } from "@app/data/repositories/orderProduct.repo";
 import { productRepo } from "@app/data/repositories/product.repo";
 import { Request } from "express";
+import { Transaction } from "sequelize/types";
 
 class OrderService {
   async createOrder(order: OrderDTO, req: Request) {
     order["organizationId"] = req["user"].organizationId;
     let createdOrder;
+    let volume: number;
     let orderProduct: OrderProduct[] = [];
 
     await db.sequelize.transaction(async t => {
@@ -32,9 +34,14 @@ class OrderService {
         orderProduct.push(orderProd);
 
         // @ts-ignore
-        const volume = getProduct?.volume - product.volume;
+        if (prod?.volume >= product.volume) {
+          // @ts-ignore
+          volume = prod?.volume - product.volume;
+        } else {
+          throw new Error(`product with ID: ${product.productId} is sold out`);
+        }
 
-        await productRepo.updateRows(
+        await productRepo.upsert(
           product.productId,
           {
             volume
@@ -47,7 +54,7 @@ class OrderService {
     return { ...createdOrder, orderProduct };
   }
 
-  async getOrderById(id: string) {
+  async getOrderById(id: string, t?: Transaction) {
     const order = await orderRepo.findById(id, {
       // attributes: ["id", "type", "organizationId"],
       where: {
@@ -55,17 +62,19 @@ class OrderService {
       },
       include: {
         model: OrderProduct
-      }
+      },
+      transaction: t
     });
     return order;
   }
 
-  async getOrders(query: QueryDTO) {
+  async getOrders(query: QueryDTO, t?: Transaction) {
     return await orderRepo.all({
       where: { ...query },
       include: {
         model: OrderProduct
-      }
+      },
+      transaction: t
     });
   }
 
@@ -74,7 +83,44 @@ class OrderService {
   }
 
   async updateOrder(id: string, order: OrderDTO) {
-    return await orderRepo.updateRows(id, order);
+    let updatedOrder;
+    let volume: number;
+    await db.sequelize.transaction(async t => {
+      console.log(
+        "ONE",
+        await orderRepo.upsert(
+          id,
+          {
+            type: order.type
+          },
+          t
+        )
+      );
+
+      for (const product of order.products) {
+        await orderProductRepo.upsert(id, product, t);
+
+        const prod = (await productRepo.findById(product.productId, t)).toJSON();
+        // @ts-ignore
+        if (prod?.volume >= product.volume) {
+          // @ts-ignore
+          volume = prod?.volume - product.volume;
+        } else {
+          throw new Error(`product with ID: ${product.productId} is sold out`);
+        }
+        await productRepo.upsert(
+          product.productId,
+          {
+            volume
+          },
+          t
+        );
+      }
+
+      updatedOrder = (await this.getOrderById(id, t)).toJSON();
+    });
+
+    return updatedOrder;
   }
 }
 
