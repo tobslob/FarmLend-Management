@@ -60,10 +60,13 @@ class UserService {
 
   async login(login: LoginDTO) {
     const user = await userRepo.findOne(login.emailAddress);
+    if (!user) {
+      throw new UnAuthorisedError('Incorrecr email address or password.');
+    }
     const isCorrectPassword = await Passwords.validate(
       login.password,
       // @ts-ignore
-      user.toJSON()?.password,
+      user?.toJSON()?.password,
     );
 
     if (!isCorrectPassword) {

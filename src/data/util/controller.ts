@@ -23,11 +23,6 @@ export class Controller<T> {
     Log.info({ req, res });
   }
 
-  dbErrors(err) {
-    if (err.errors) {
-    }
-  }
-
   /*
    * Determines the HTTP status code of an error
    * @param err Error object
@@ -54,7 +49,7 @@ export class Controller<T> {
       Log.error(req, res, err);
       return res.status(400).json({
         data: null,
-        message: err?.original,
+        message: err?.original?.message?.detail,
       });
     }
     /**

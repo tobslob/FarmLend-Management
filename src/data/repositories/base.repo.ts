@@ -30,7 +30,8 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
   }
 
   async upsert(id: string, data: any, attributes?: any): Promise<T> {
-    const resource = await this.findOne(id);
+    // @ts-ignore
+    const resource = await this.model.findByPk(id);
 
     if (resource) {
       // @ts-ignore
@@ -38,13 +39,17 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     }
   }
 
-  async deleteRow(id: string, organizationId: any): Promise<number> {
+  async deleteRow(id: string, organizationId?: any): Promise<number> {
     return await this.model.destroy({ where: { id, organizationId } });
   }
 
-  async findOne([T]: any) {
+  async deleteByID(id: string): Promise<number> {
+    return await this.model.destroy({ where: { id } });
+  }
+
+  async findOne(emailAddress: string) {
     // @ts-ignore
-    return await this.model.findOne({ T });
+    return await this.model.findOne({ where: { emailAddress } });
   }
 
   async truncate(attributes?: any) {

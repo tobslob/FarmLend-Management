@@ -56,7 +56,7 @@ export class OrganizationController extends BaseController<controllerResponse> {
   @httpDelete('/:id', validate(isID))
   async deleteOrganization(@request() req: Request, @response() res: Response, @requestParam('id') id: string) {
     try {
-      const resp = await Organizations.deleteOrganization(id, req);
+      const resp = await Organizations.deleteOrganization(id);
       this.handleSuccess(req, res, resp);
     } catch (error) {
       this.handleError(req, res, error);
