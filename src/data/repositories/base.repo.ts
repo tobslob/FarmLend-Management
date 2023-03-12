@@ -39,6 +39,16 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     }
   }
 
+  async update(id: string, data: any, attributes?: any): Promise<T> {
+    // @ts-ignore
+    const resource = await this.model.findOne({ where: { orderId: id } });
+
+    if (resource) {
+      // @ts-ignore
+      return await resource.update(data, { attributes });
+    }
+  }
+
   async deleteRow(id: string, organizationId?: any): Promise<number> {
     return await this.model.destroy({ where: { id, organizationId } });
   }

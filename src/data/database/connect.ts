@@ -14,7 +14,9 @@ export const sequelizeOptions: SequelizeOptions = {
   repositoryMode: true,
 };
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+let  DATABASE_URL = process.env.NODE_ENV === "production" ? process.env.DATABASE_URL_PRODUCTION : process.env.DATABASE_URL_DEV
+
+const sequelize = new Sequelize(DATABASE_URL);
 
 // Register our models with sequelize
 sequelize.addModels([User, Product, Order, Organization, OrderProduct]);

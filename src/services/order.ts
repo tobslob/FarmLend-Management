@@ -12,7 +12,6 @@ class OrderService {
     order['organizationId'] = req['user'].organizationId;
     let createdOrder;
     let volume: number;
-    const orderProduct: OrderProduct[] = [];
 
     await db.sequelize.transaction(async (t) => {
       createdOrder = (await orderRepo.create(order, { ...t })).toJSON();
@@ -24,7 +23,7 @@ class OrderService {
           throw new NotFoundError(`product with ID: ${product.productId} is not found`);
         }
 
-        const orderProd = await orderProductRepo.create(
+        await orderProductRepo.create(
           {
             orderId: createdOrder.id,
             // @ts-ignore
@@ -35,8 +34,6 @@ class OrderService {
           },
           t,
         );
-
-        orderProduct.push(orderProd);
 
         // @ts-ignore
         if (getProduct?.volume >= product.volume) {
@@ -56,7 +53,7 @@ class OrderService {
       }
     });
 
-    return { ...createdOrder, orderProduct };
+    return createdOrder;
   }
 
   async getOrderById(id: string, t?: Transaction) {
@@ -90,7 +87,7 @@ class OrderService {
     let updatedOrder;
     let volume: number;
     await db.sequelize.transaction(async (t) => {
-      await orderRepo.upsert(
+      const updateOrder = await orderRepo.upsert(
         id,
         {
           type: order.type,
@@ -98,10 +95,18 @@ class OrderService {
         t,
       );
 
-      for (const product of order.products) {
-        await orderProductRepo.upsert(id, product, t);
+      if (!updateOrder?.toJSON()) {
+        throw new NotFoundError("Order not found")
+      }
 
-        const prod = (await productRepo.findById(product.productId, t)).toJSON();
+      for (const product of order.products) {
+        await orderProductRepo.update(id, product, t);
+
+        const prod = (await productRepo.findById(product.productId, t))?.toJSON();
+
+        if (!prod) {
+          throw new NotFoundError("Product not found");
+        }
         // @ts-ignore
         if (prod?.volume >= product.volume) {
           // @ts-ignore
@@ -118,7 +123,7 @@ class OrderService {
         );
       }
 
-      updatedOrder = (await this.getOrderById(id, t)).toJSON();
+      updatedOrder = (await this.getOrderById(id, t))?.toJSON();
     });
 
     return updatedOrder;

@@ -51,7 +51,7 @@ export class Controller<T> {
       return res.status(400).json({
         code: this.getHTTPErrorCode(err) ?? code,
         data: null,
-        message: err.errors[0].message ?? err?.original?.message?.detail,
+        message: err.errors?.[0].message ?? err?.original?.message?.detail,
       });
     }
     /**

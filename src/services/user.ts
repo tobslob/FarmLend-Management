@@ -41,12 +41,12 @@ class UserService {
           throw new Error(error?.original);
         });
     });
-    return usr.toJSON();
+    return usr?.toJSON();
   }
 
   async addUserToOrganization(user: UserDTO) {
     if (user.organizationId) {
-      const org = (await orgRepo.findById(user?.organizationId)).toJSON();
+      const org = (await orgRepo.findById(user?.organizationId))?.toJSON();
       if (!org) {
         throw new NotFoundError('Invalid organization id');
       }
@@ -55,7 +55,7 @@ class UserService {
   }
 
   async getUser(id: string) {
-    return (await userRepo.findById(id)).toJSON();
+    return (await userRepo.findById(id))?.toJSON();
   }
 
   async login(login: LoginDTO) {

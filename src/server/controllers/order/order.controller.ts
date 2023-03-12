@@ -62,7 +62,7 @@ export class OrderController extends BaseController<controllerResponse> {
     }
   }
 
-  @httpPatch('/:id', validate(isID))
+  @httpPatch('/:id', validate(isID), validate(isOrder))
   async updateOrder(
     @request() req: Request,
     @response() res: Response,

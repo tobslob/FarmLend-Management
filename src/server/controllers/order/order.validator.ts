@@ -3,17 +3,15 @@ import { JoiValidator } from '@app/data/util';
 import Joi from '@hapi/joi';
 import { values } from 'lodash';
 
-const productDetails = Joi.array().allow([
-  {
-    productId: JoiValidator.validateID().required(),
-    volume: JoiValidator.validateNumber().required(),
-  },
-]);
+let productDetails = Joi.object({
+  productId: JoiValidator.validateID().required(),
+  volume: JoiValidator.validateNumber().required()
+}).required()
 
 export const isOrder = Joi.object({
   type: JoiValidator.validateString().valid(values(OrderType)).required(),
   references: JoiValidator.validateID(),
-  products: productDetails.required(),
+  products: Joi.array().items(productDetails).required(),
 });
 
 export const isQuery = Joi.object({
