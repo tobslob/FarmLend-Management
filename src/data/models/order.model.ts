@@ -10,7 +10,7 @@ export class Order extends BaseModel {
   product: Product[];
 
   @HasMany(() => OrderProduct, 'orderId')
-  order_product: OrderProduct[];
+  orderProduct: OrderProduct[];
 
   @Index
   @Column({

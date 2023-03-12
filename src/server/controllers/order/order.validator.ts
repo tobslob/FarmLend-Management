@@ -5,8 +5,8 @@ import { values } from 'lodash';
 
 let productDetails = Joi.object({
   productId: JoiValidator.validateID().required(),
-  volume: JoiValidator.validateNumber().required()
-}).required()
+  volume: JoiValidator.validateNumber().required(),
+}).required();
 
 export const isOrder = Joi.object({
   type: JoiValidator.validateString().valid(values(OrderType)).required(),

@@ -14,7 +14,8 @@ export const sequelizeOptions: SequelizeOptions = {
   repositoryMode: true,
 };
 
-let  DATABASE_URL = process.env.NODE_ENVIRONMENT === "production" ? process.env.DATABASE_URL_PRODUCTION : process.env.DATABASE_URL_DEV
+let DATABASE_URL =
+  process.env.NODE_ENVIRONMENT === 'production' ? process.env.DATABASE_URL_PRODUCTION : process.env.DATABASE_URL_DEV;
 
 const sequelize = new Sequelize(DATABASE_URL);
 

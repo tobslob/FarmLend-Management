@@ -1,5 +1,5 @@
 import db from '@app/data/database/connect';
-import { OrderDTO, OrderProduct, QueryDTO } from '@app/data/models';
+import { OrderDTO, OrderProduct, Product, QueryDTO } from '@app/data/models';
 import { orderRepo } from '@app/data/repositories/order.repo';
 import { orderProductRepo } from '@app/data/repositories/orderProduct.repo';
 import { productRepo } from '@app/data/repositories/product.repo';
@@ -72,9 +72,14 @@ class OrderService {
   async getOrders(query: QueryDTO, t?: Transaction) {
     return await orderRepo.all({
       where: { ...query },
-      include: {
-        model: OrderProduct,
-      },
+      include: [
+        {
+          model: OrderProduct,
+        },
+        { model: Product, attributes: ['id', 'category', 'variety'], through: {
+          attributes: []
+        }   },
+      ],
       transaction: t,
     });
   }
@@ -96,7 +101,7 @@ class OrderService {
       );
 
       if (!updateOrder?.toJSON()) {
-        throw new NotFoundError("Order not found")
+        throw new NotFoundError('Order not found');
       }
 
       for (const product of order.products) {
@@ -105,7 +110,7 @@ class OrderService {
         const prod = (await productRepo.findById(product.productId, t))?.toJSON();
 
         if (!prod) {
-          throw new NotFoundError("Product not found");
+          throw new NotFoundError('Product not found');
         }
         // @ts-ignore
         if (prod?.volume >= product.volume) {
