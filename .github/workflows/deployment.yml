@@ -43,7 +43,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: farmlend
-          IMAGE_TAG: farmlend-${{ github.sha }}
+          IMAGE_TAG: ${{ github.sha }}
 
         run: |
           # Build a docker container and
@@ -69,7 +69,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: farmlend-image
+          container-name: farmlend-container
           image: ${{ steps.push-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
@@ -77,5 +77,5 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.update-task-def.outputs.task-definition }}
-          service: farmlend-service
-          cluster: farmlend-app
+          service: farmlend-api-service
+          cluster: farmlend-api-cluster
