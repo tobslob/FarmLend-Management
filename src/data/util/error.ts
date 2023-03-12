@@ -18,7 +18,7 @@ export class ControllerError extends Error {
   }
 }
 
-export class DuplicateModelError extends ControllerError {
+export class UniqueConstraintError extends ControllerError {
   code = HttpStatus.BAD_REQUEST;
   constructor(message: string) {
     super(message);

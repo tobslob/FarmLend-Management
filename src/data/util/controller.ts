@@ -1,4 +1,4 @@
-import { ControllerError, ModelNotFoundError, DuplicateModelError } from '@app/data/util';
+import { ControllerError, ModelNotFoundError, UniqueConstraintError } from '@app/data/util';
 import { Request, Response } from 'express';
 import { injectable } from 'inversify';
 import _ from 'lodash';
@@ -31,7 +31,7 @@ export class Controller<T> {
     // check if error code exists and is a valid HTTP code.
     if (err.code >= 100 && err.code < 600) {
       if (err instanceof ModelNotFoundError) return StatusCodes.NOT_FOUND;
-      if (err instanceof DuplicateModelError) return StatusCodes.CONFLICT;
+      if (err instanceof UniqueConstraintError) return StatusCodes.CONFLICT;
       return err.code;
     }
     return StatusCodes.BAD_REQUEST;
@@ -45,11 +45,13 @@ export class Controller<T> {
    * @param message Optional error message. Useful for hiding internal errors from clients.
    */
   handleError(req: Request, res: Response, err: any, message?: string) {
-    if (err?.original) {
+    const { code } = <ControllerError>err;
+    if (err.errors ?? err?.original) {
       Log.error(req, res, err);
       return res.status(400).json({
+        code: this.getHTTPErrorCode(err) ?? code,
         data: null,
-        message: err?.original?.message?.detail,
+        message: err.errors[0].message ?? err?.original?.message?.detail,
       });
     }
     /**
@@ -57,8 +59,6 @@ export class Controller<T> {
      * after we've sent a response to client
      */
     if (res.headersSent) return Log.error(err);
-
-    const { code } = <ControllerError>err;
 
     const errorMessage = message || err.message;
 
