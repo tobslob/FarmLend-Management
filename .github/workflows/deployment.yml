@@ -42,8 +42,8 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: aws-ecs-typescript-api
-          IMAGE_TAG: aws-ecs-typescript-api-${{ github.sha }}
+          ECR_REPOSITORY: farmlend
+          IMAGE_TAG: farmlend-${{ github.sha }}
 
         run: |
           # Build a docker container and
