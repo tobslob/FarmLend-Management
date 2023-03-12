@@ -1,0 +1,15 @@
+version: "3"
+services:
+  redis:
+    image: redis
+  app:
+    container_name: app
+    restart: always
+    build: .
+    environment:
+      - .env
+    ports:
+      - 8080:8080
+    entrypoint: ["/bin/sh", "./entrypoint.sh"]
+    depends_on:
+      - redis

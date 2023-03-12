@@ -46,7 +46,7 @@ export class Controller<T> {
    */
   handleError(req: Request, res: Response, err: any, message?: string) {
     const { code } = <ControllerError>err;
-    if (err.errors ?? err?.original) {
+    if (err?.errors ?? err?.original) {
       Log.error(req, res, err);
       return res.status(400).json({
         code: this.getHTTPErrorCode(err) ?? code,
