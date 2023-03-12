@@ -69,7 +69,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: farmlend-task
+          container-name: farmlend-image
           image: ${{ steps.push-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
@@ -78,4 +78,4 @@ jobs:
         with:
           task-definition: ${{ steps.update-task-def.outputs.task-definition }}
           service: farmlend-service
-          cluster: farmlend-api
+          cluster: farmlend-app
