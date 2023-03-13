@@ -88,7 +88,7 @@ class OrderService {
   async deleteOrder(id: string, req: Request) {
     await db.sequelize.transaction(async (t) => {
       await orderProductRepo.deleteRow({orderId: id}, t)
-      await orderRepo.deleteRow({id, organizationId: req['user'].organizationId}, t);
+      return await orderRepo.deleteRow({id, organizationId: req['user']?.organizationId}, t);
     })
 
     return  1

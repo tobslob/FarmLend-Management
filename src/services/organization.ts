@@ -1,5 +1,5 @@
 import { OrganizationDTO, QueryDTO } from '@app/data/models';
-import { orderProductRepo } from '@app/data/repositories/orderProduct.repo';
+import { orderRepo } from '@app/data/repositories/order.repo';
 import { orgRepo } from '@app/data/repositories/organization.repo';
 
 class OrganizationService {
@@ -16,7 +16,7 @@ class OrganizationService {
   }
 
   async deleteOrganization(id: string) {
-    const orders: any = await orderProductRepo.all({ where: { organizationId: id }})
+    const orders: any = await orderRepo.all({ where: { organizationId: id }})
     if (orders?.length != 0) {
       throw new Error("you can't delete an organization with orders")
     }

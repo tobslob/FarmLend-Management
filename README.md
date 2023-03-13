@@ -18,7 +18,11 @@
 
 `FarmLend-Management-System` is a CRUD endpoint that facilitates buy and sell between farmers and consumers
 
-`https://documenter.getpostman.com/view/6225567/2s93JtQiRT`
+`https://documenter.getpostman.com/view/6225567/2s93JtQiRT` Documentation
+
+`https://farmlend.vercel.app` Frontend application
+
+`farmlendz-2009802627.eu-north-1.elb.amazonaws.com` Backend application api
 
 
 ![DB MODEL](https://github.com/tobslob/FarmLend-Management/blob/master/database-model.png?raw=true)
@@ -39,11 +43,20 @@ cd FarmLend-Management
 ```sh
  yarn install
 ```
+
 ```sh
  add `.env` to root folder, copy the .env.example
 ```
 
-## Initial setup
+```sh
+ yarn watch
+```
+
+```sh
+ yarn start:dev
+```
+
+## Running using docker compose
 
 Install PostgreSQL on local machine using the following command:
 
@@ -131,12 +144,13 @@ https://documenter.getpostman.com/view/6225567/2s8ZDcyKSF
 Use the following command
 
 ```sh
-docker pull public.ecr.aws/v6s3m2h0/farmlend
+docker pull public.ecr.aws/t4y9h2u0/farmlend:latest
 ```
 
 ```sh
-docker run -p 8080:8080 public.ecr.aws/v6s3m2h0/farmlend
+docker run -p 8080:8080 public.ecr.aws/t4y9h2u0/farmlend:latest
 ```
+
 ```sh
 Application is ready to receive connection @ http://localhost:8080
 ```
