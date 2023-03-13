@@ -41,6 +41,8 @@ class UserService {
           throw new Error(error?.original);
         });
     });
+
+    
     return usr?.toJSON();
   }
 
