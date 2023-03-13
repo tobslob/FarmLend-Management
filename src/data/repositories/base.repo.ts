@@ -1,4 +1,5 @@
 import { Model } from 'sequelize-typescript';
+import { Transaction } from 'sequelize/types';
 
 export interface IBaseRepository {
   all(attributes?: any): Promise<any | any[]>;
@@ -6,7 +7,7 @@ export interface IBaseRepository {
   findById(id: string, attributes?: any): Promise<any>;
   create(data: any, transaction?: any): Promise<any>;
   upsert(id: string, data: any, attributes: any): Promise<any>;
-  deleteRow(id: string, organizationId: string): Promise<number>;
+  deleteRow(query: any): Promise<number>;
   truncate(attributes: any): Promise<any>;
 }
 
@@ -49,12 +50,12 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     }
   }
 
-  async deleteRow(id: string, organizationId?: any): Promise<number> {
-    return await this.model.destroy({ where: { id, organizationId } });
+  async deleteRow(query: any, t?: Transaction): Promise<number> {
+    return await this.model.destroy({ where: query, transaction: t });
   }
 
-  async deleteByID(id: string): Promise<number> {
-    return await this.model.destroy({ where: { id } });
+  async deleteByID(id: string, t?: Transaction): Promise<number> {
+    return await this.model.destroy({ where: { id }, transaction: t });
   }
 
   async findOne(emailAddress: string) {

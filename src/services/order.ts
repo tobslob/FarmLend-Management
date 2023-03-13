@@ -9,12 +9,12 @@ import { Transaction } from 'sequelize/types';
 
 class OrderService {
   async createOrder(order: OrderDTO, req: Request) {
-    order['organizationId'] = req['user'].organizationId;
+    order['organizationId'] = req['user']?.organizationId;
     let createdOrder;
     let volume: number;
 
     await db.sequelize.transaction(async (t) => {
-      createdOrder = (await orderRepo.create(order, { ...t })).toJSON();
+      createdOrder = (await orderRepo.create(order, { ...t }))?.toJSON();
 
       for (const product of order.products) {
         const getProduct = (await productRepo.findById(product.productId, t))?.toJSON();
@@ -29,6 +29,7 @@ class OrderService {
             // @ts-ignore
             productId: getProduct?.id,
             volume: product.volume,
+            organizationId: order['organizationId'],
             // @ts-ignore
             pricePerUnit: getProduct?.pricePerUnit,
           },
@@ -69,9 +70,9 @@ class OrderService {
     return order;
   }
 
-  async getOrders(query: QueryDTO, t?: Transaction) {
+  async getOrders(query: QueryDTO, req: Request, t?: Transaction) {
     return await orderRepo.all({
-      where: { ...query },
+      where: { ...query, organizationId: req['user']?.organizationId },
       include: [
         {
           model: OrderProduct,
@@ -85,7 +86,12 @@ class OrderService {
   }
 
   async deleteOrder(id: string, req: Request) {
-    return await orderRepo.deleteRow(id, req['user'].organizationId);
+    await db.sequelize.transaction(async (t) => {
+      await orderProductRepo.deleteRow({orderId: id}, t)
+      await orderRepo.deleteRow({id, organizationId: req['user'].organizationId}, t);
+    })
+
+    return  1
   }
 
   async updateOrder(id: string, order: OrderDTO) {

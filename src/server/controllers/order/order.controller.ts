@@ -35,7 +35,7 @@ export class OrderController extends BaseController<controllerResponse> {
   @httpGet('/', validate(isQuery))
   async getOrders(@request() req: Request, @response() res: Response, @queryParam() query: QueryDTO) {
     try {
-      const orders = await Orders.getOrders(query);
+      const orders = await Orders.getOrders(query, req);
       this.handleSuccess(req, res, orders);
     } catch (error) {
       this.handleError(req, res, error);
