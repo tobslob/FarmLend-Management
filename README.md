@@ -22,7 +22,9 @@
 
 `https://farmlend.vercel.app` Frontend application
 
-`farmlendz-2009802627.eu-north-1.elb.amazonaws.com` Backend application api
+`https://farmlend-api.onrender.com` Backend application prod
+
+`http://farmlendz-2009802627.eu-north-1.elb.amazonaws.com` Backend application api staging
 
 ## Login Details
 ```
