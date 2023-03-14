@@ -1,10 +1,9 @@
 import { Column, DataType, ForeignKey, Index, Table } from 'sequelize-typescript';
 import { BaseModel } from './base.model';
 import { Order } from './order.model';
-import { Organization } from './organization.model';
 import { Product } from './product.model';
 
-@Table({ tableName: 'order_product' })
+@Table({ tableName: 'OrderProducts' })
 export class OrderProduct extends BaseModel {
   @Index
   @ForeignKey(() => Order)
@@ -15,11 +14,6 @@ export class OrderProduct extends BaseModel {
   @ForeignKey(() => Product)
   @Column({ type: DataType.UUID, allowNull: false, validate: { notEmpty: true } })
   productId: string;
-
-  @Index
-  @ForeignKey(() => Organization)
-  @Column({ type: DataType.UUID, allowNull: false, validate: { notEmpty: true } })
-  organizationId: number;
 
   @Column({ type: DataType.INTEGER, allowNull: false, validate: { notEmpty: true } })
   volume: number;

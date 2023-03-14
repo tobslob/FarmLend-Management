@@ -3,7 +3,7 @@ import { BeforeCreate, Column, DataType, ForeignKey, Index, Table } from 'sequel
 import { BaseModel } from './base.model';
 import { Organization, OrganizationType } from './organization.model';
 
-@Table({ tableName: 'user' })
+@Table({ tableName: 'Users' })
 export class User extends BaseModel {
   @Column({ type: DataType.STRING, allowNull: false, validate: { notEmpty: true } })
   firstName: string;

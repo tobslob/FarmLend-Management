@@ -4,7 +4,7 @@ import { Order } from './order.model';
 import { OrderProduct } from './orderProduct.model';
 import { Organization } from './organization.model';
 
-@Table({ tableName: 'product' })
+@Table({ tableName: 'Products' })
 export class Product extends BaseModel {
   @BelongsToMany(() => Order, () => OrderProduct)
   orders: Order[];

@@ -3,7 +3,7 @@ import { BaseModel } from './base.model';
 import { Order } from './order.model';
 import { Product } from './product.model';
 
-@Table({ tableName: 'organization' })
+@Table({ tableName: 'Organizations' })
 export class Organization extends BaseModel {
   @Index
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { notEmpty: true } })
