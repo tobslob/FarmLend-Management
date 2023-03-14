@@ -21,7 +21,7 @@ const sequelize = new Sequelize(DATABASE_URL);
 
 // Register our models with sequelize
 sequelize.addModels([User, Product, Order, Organization, OrderProduct]);
-sequelize.sync();
+sequelize.sync({ force: true });
 
 const db = { sequelize };
 
