@@ -24,6 +24,13 @@
 
 `farmlendz-2009802627.eu-north-1.elb.amazonaws.com` Backend application api
 
+## Login Details
+```
+emailAddress: "odutola_k@yahoo.ca"
+password: "Kazeem27"
+```
+
+## DB MODEL
 
 ![DB MODEL](https://github.com/tobslob/FarmLend-Management/blob/master/database-model.png?raw=true)
 
