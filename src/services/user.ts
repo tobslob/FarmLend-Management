@@ -60,7 +60,7 @@ class UserService {
   }
 
   async login(login: LoginDTO) {
-    const user = await userRepo.findOne(login.emailAddress);
+    const user = await userRepo.findByEmail(login.emailAddress);
     if (!user) {
       throw new UnAuthorisedError('Incorrecr email address or password.');
     }

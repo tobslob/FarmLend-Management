@@ -62,9 +62,18 @@ class OrderService {
       where: {
         orderId: id,
       },
-      include: {
-        model: OrderProduct,
-      },
+      include: [
+        {
+          model: OrderProduct,
+        },
+        {
+          model: Product,
+          attributes: ['id', 'category', 'variety'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
       transaction: t,
     });
     return order;
@@ -91,7 +100,7 @@ class OrderService {
 
   async deleteOrder(id: string, req: Request) {
     await db.sequelize.transaction(async (t) => {
-      await orderProductRepo.deleteRow({ orderId: id }, t);
+      await orderProductRepo.deleteRow({ orderId: id, organizationId: req['user']?.organizationId }, t);
       return await orderRepo.deleteRow({ id, organizationId: req['user']?.organizationId }, t);
     });
 

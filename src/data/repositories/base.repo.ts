@@ -3,7 +3,7 @@ import { Transaction } from 'sequelize/types';
 
 export interface IBaseRepository {
   all(attributes?: any): Promise<any | any[]>;
-  findOne(attributes?: any): Promise<any>;
+  findByEmail(attributes?: any): Promise<any>;
   findById(id: string, attributes?: any): Promise<any>;
   create(data: any, transaction?: any): Promise<any>;
   upsert(id: string, data: any, attributes: any): Promise<any>;
@@ -58,7 +58,7 @@ export abstract class BaseRepository<T extends Model> implements IBaseRepository
     return await this.model.destroy({ where: { id }, transaction: t });
   }
 
-  async findOne(emailAddress: string) {
+  async findByEmail(emailAddress: string) {
     // @ts-ignore
     return await this.model.findOne({ where: { emailAddress } });
   }

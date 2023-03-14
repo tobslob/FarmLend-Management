@@ -18,8 +18,9 @@ const start = async () => {
 
     // start server
     const httpServer = http.createServer(appServer);
-    httpServer.listen(process.env.PORT);
-    httpServer.on('listening', () => Log.info(`🚀  ${process.env.SERVICE_NAME} listening on ` + process.env.PORT));
+    const PORT = process.env.PORT || 8080
+    httpServer.listen(PORT);
+    httpServer.on('listening', () => Log.info(`🚀  ${process.env.SERVICE_NAME} listening on ` + PORT));
   } catch (err) {
     Log.error(err, 'Fatal server error');
   }
