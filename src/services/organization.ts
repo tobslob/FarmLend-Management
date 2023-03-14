@@ -16,9 +16,9 @@ class OrganizationService {
   }
 
   async deleteOrganization(id: string) {
-    const orders: any = await orderRepo.all({ where: { organizationId: id }})
+    const orders: any = await orderRepo.all({ where: { organizationId: id } });
     if (orders?.length != 0) {
-      throw new Error("you can't delete an organization with orders")
+      throw new Error("you can't delete an organization with orders");
     }
     return await orgRepo.deleteByID(id);
   }

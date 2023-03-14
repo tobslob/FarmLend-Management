@@ -18,11 +18,11 @@ class ProductService {
   }
 
   async deleteProduct(id: string, req: Request) {
-    const orders: any = await orderProductRepo.all({ where: { productId: id }})
+    const orders: any = await orderProductRepo.all({ where: { productId: id } });
     if (orders?.length != 0) {
-      throw new Error("you can't delete a product with pending orders")
+      throw new Error("you can't delete a product with pending orders");
     }
-    return await productRepo.deleteRow({id, organizationId: req['user'].organizationId});
+    return await productRepo.deleteRow({ id, organizationId: req['user'].organizationId });
   }
 
   async updateProduct(id: string, product: ProductDTO) {

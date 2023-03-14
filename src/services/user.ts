@@ -42,7 +42,6 @@ class UserService {
         });
     });
 
-
     return usr?.toJSON();
   }
 

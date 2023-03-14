@@ -14,8 +14,6 @@ export class Order extends BaseModel {
 
   @Index
   @Column({
-    type: DataType.ENUM,
-    values: ['buy', 'sell'],
     allowNull: false,
     validate: { notEmpty: true },
   })
